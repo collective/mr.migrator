@@ -21,9 +21,8 @@ from plone.app.z3cform.layout import wrap_form
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from collective.transmogrifier.transmogrifier import configuration_registry
 from collective.transmogrifier.transmogrifier import _load_config
-from collective.jsonmigrator.remotesource import RemoteSource
-from collective.jsonmigrator import JSONMigratorMessageFactory as _
-from collective.jsonmigrator import logger
+from mr.migrator.browser import MigratorMessageFactory as _
+from mr.migrator.browser import logger
 
 
 
@@ -48,7 +47,7 @@ def formfactory(configname):
         doc = cparser.get('@doc','')
         for key,value in cparser.items():
             if key in ['@doc','blueprint']:
-                continue
+                continue 
             if key.startswith('@'):
                 key = key[1:]
                 metavar,_,help = value.partition(':')
@@ -86,7 +85,7 @@ def formfactory(configname):
                 default = len(default)
             else:
                 ftype = TextLine()
-            ftype.__name__=title
+            ftype.__name__ = key.replace('-', '_')
             ftype.title=unicode(title)
             ftype.description=unicode(help)
             ftype.required=False
@@ -103,7 +102,7 @@ class IMigratorRun(Interface):
     """ remote source interface
     """
 
-    config = TextLine()
+    config = ASCIILine  ()
 
 
 class MigratorRun(group.GroupForm, form.Form):
@@ -117,13 +116,8 @@ class MigratorRun(group.GroupForm, form.Form):
         self.groups = formfactory(configname)
         return super(MigratorRun, self).update()
 
-    @property
-    def fields(self):
-        fields = [TextLine(__name__='config')]
-        return field.Fields(*fields)
-
-
     def updateWidgets(self):
+        import ipdb; ipdb.set_trace()
         super(MigratorRun, self).updateWidgets()
         self.widgets['config'].mode = interfaces.HIDDEN_MODE
 
@@ -144,6 +138,7 @@ class MigratorConfigurations(object):
     def __call__(self, context):
         terms = []
         for conf_id in configuration_registry.listConfigurationIds():
+            print conf_id
             conf_file = _load_config(conf_id)
             for section_id in conf_file.keys():
                 section = conf_file[section_id]
@@ -165,7 +160,7 @@ class IMigrator(Interface):
             )
 
 
-class JSONMigrator(form.Form):
+class Migrator(form.Form):
 
     label = _(u"Synchronize and migrate")
     fields = field.Fields(IMigrator)
@@ -177,7 +172,7 @@ class JSONMigrator(form.Form):
         data, errors = self.extractData()
         if errors:
             return False
-        self.request.RESPONSE.redirect('%s/@@jsonmigrator-run?form.widgets.%s' %
+        self.request.RESPONSE.redirect('%s/@@mr.migrator-run?form.widgets.%s' %
                 (self.context.absolute_url(), urllib.urlencode(data)))
 
 

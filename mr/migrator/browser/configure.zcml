@@ -17,13 +17,13 @@
         />
 
     <browser:page
-        name="jsonmigrator"
+        name="mr.migrator"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         permission="cmf.ManagePortal"
         class=".helper.MigratorView"
         />
     <browser:page
-        name="jsonmigrator-run"
+        name="mr.migrator-run"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         permission="cmf.ManagePortal"
         class=".helper.MigratorRunView"

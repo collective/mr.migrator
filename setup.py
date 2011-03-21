@@ -28,7 +28,9 @@ long_description = (
     )
 entry_point = ''
 entry_points = {"zc.buildout": ["default = mr.migrator.recipe:Recipe"],
-                'console_scripts': ['funnelweb = mr.migrator.runner:runner']}
+                'console_scripts': ['migrate = mr.migrator.runner:runner'],
+                "z3c.autoinclude.plugin": ["target = plone"],
+                }
 
 tests_require=['zope.testing', 'zc.buildout']
 
@@ -43,10 +45,10 @@ setup(name='mr.migrator',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: Zope Public License',
         ],
-      keywords='buildout crawler spider plone',
+      keywords='buildout crawler spider plone transmogrifierless',
       author='Dylan Jay',
       author_email='software@pretaweb.com',
-      url='http://pypi.python.org/pypi/funnelweb',
+      url='http://pypi.python.org/pypi/migrator',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['mr'],
@@ -64,6 +66,6 @@ setup(name='mr.migrator',
                         ],
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
-      test_suite = 'funnelweb.recipe.tests.test_docs.test_suite',
+      test_suite = 'mr.migrator.recipe.tests.test_docs.test_suite',
       entry_points=entry_points,
       )

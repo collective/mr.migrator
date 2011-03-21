@@ -22,17 +22,16 @@ class Recipe(Scripts):
                 args.setdefault(part, {})[key] = v
         default = buildout['buildout']['directory']+'/var/cache'
         
-        self.options['scripts'] = 'funnelweb=%s'%name
-
+        self.options['scripts'] = 'migrate=%s'%name
 
         self.options['eggs'] = """
-                transmogrify.webcrawler
-                transmogrify.siteanalyser
-                transmogrify.htmlcontentextractor
-                transmogrify.pathsorter
-                transmogrify.ploneremote
-                funnelweb
+                mr.migrator
                 """ + self.options.get('eggs','')
+        pipeline = self.options['pipeline']
+        if ':' in pipeline:
+            package, pipeline_name = pipeline.split(':')
+            self.options['eggs'] += "  %s"%package
+
         pipeline = self.options.get('pipeline',None)
         if pipeline:
             self.options['arguments'] =  str(args)+',"'+pipeline+'"'

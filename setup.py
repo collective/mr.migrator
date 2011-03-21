@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '1.0b7'
+version = '1.0b1'
 
 long_description = (
     read('README.rst')
@@ -26,15 +26,15 @@ long_description = (
    'Download\n'
     '********\n'
     )
-entry_point = 'funnelweb.recipe:Recipe'
-entry_points = {"zc.buildout": ["default = %s" % entry_point],
-                'console_scripts': ['funnelweb = funnelweb.runner:runner']}
+entry_point = ''
+entry_points = {"zc.buildout": ["default = mr.migrator.recipe:Recipe"],
+                'console_scripts': ['funnelweb = mr.migrator.runner:runner']}
 
 tests_require=['zope.testing', 'zc.buildout']
 
-setup(name='funnelweb',
+setup(name='mr.migrator',
       version=version,
-      description="Crawl and parse static sites and import to Plone",
+      description="Your friend in helping you migrate content",
       long_description=long_description,
       # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
@@ -49,19 +49,14 @@ setup(name='funnelweb',
       url='http://pypi.python.org/pypi/funnelweb',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['funnelweb'],
+      namespace_packages=['mr'],
       include_package_data=True,
       zip_safe=False,
       install_requires=['setuptools',
                         'zc.buildout',
                         'zc.recipe.egg',
                         'collective.transmogrifier',
-                        'transmogrify.webcrawler>=1.0b6',
-                        'transmogrify.siteanalyser>=1.0b8',
-                        'transmogrify.htmlcontentextractor>=1.0b4',
-                        'transmogrify.pathsorter>=1.0b3',
-                        'transmogrify.ploneremote>=1.0b3',
-                        'Products.CMFCore',
+                        'Products.CMFCore', # cause transmogrifier needs it
                 'zope.app.pagetemplate',
                 'zope.app.component',
           'z3c.autoinclude'

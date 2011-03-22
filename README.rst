@@ -142,6 +142,16 @@ Mr.Migrator needs to be combined with a package providing a registered pipeline.
 6. Click run
 7. Popup a progress feedback dialog with a log of activity
 
+TODO
+----
+
+- Finish autoform so works in all cases
+- combine argsparse and autoform code
+- allow commandline to work with registered pipelines via "package:name" syntax.
+- do progress dialog
+- read in .cfg files so order of options is preserved so UI looks better
+- hook point for packages to register form along with pipeline
+- allow way of running zcml for blueprint packages in commandline
 
 
 Contributing
@@ -152,6 +162,12 @@ Contributing
 - Report bugs at http://github.com/collective/mr.migrator/issues
 
 
+Thanks
+------
+
+- Alex Clark - for the name
+- Rok Garbas - the original code for the z3cform
+- Dylan Jay - the original code of the commandline runner
 
 
 

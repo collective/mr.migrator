@@ -2,7 +2,7 @@ from collective.transmogrifier.tests import registerConfig
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from pkg_resources import resource_string, resource_filename
 from collective.transmogrifier.transmogrifier import configuration_registry
-import funnelweb
+import mr.migrator
 from optparse import OptionParser, OptionGroup
 
 import sys
@@ -104,12 +104,12 @@ def runner(args={}, pipeline=None):
     else:
         config = args.get('pipeline', config)
 
-    zcml.load_config('configure.zcml', funnelweb)
+    zcml.load_config('configure.zcml', mr.migrator)
 
 
     context = Context()
     configuration_registry.registerConfiguration(
-        u'transmogrify.config.funnelweb',
+        u'transmogrify.config.mr.migrator',
         u"",
         u'', config)
 
@@ -123,6 +123,6 @@ def runner(args={}, pipeline=None):
     else:
         overrides = args
         
-    transmogrifier(u'transmogrify.config.funnelweb', **overrides)
+    transmogrifier(u'transmogrify.config.mr.migrator', **overrides)
 
 

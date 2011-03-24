@@ -6,4 +6,6 @@
     <include package=".runner"/>
     <include package=".browser"/>
 
+    <includePlugins package="." />
+
 </configure>

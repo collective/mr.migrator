@@ -9,6 +9,4 @@
     <include package="collective.transmogrifier.sections"/>
     <include package="z3c.autoinclude" file="meta.zcml" />
 
-    <includePlugins zcml:condition="installed transmogrify" package="transmogrify"/>
-
 </configure>

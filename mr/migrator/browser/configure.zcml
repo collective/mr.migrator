@@ -6,7 +6,10 @@
     i18n_domain="mr.migrator">
 
 
+<!--
     <include package="collective.transmogrifier" file="meta.zcml" />
+-->
+
     <include package="collective.transmogrifier" />
 
     <include zcml:condition="installed plone.app.transmogrifier" package="plone.app.transmogrifier" />

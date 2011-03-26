@@ -2,27 +2,32 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="mr.migrator">
 
 
+<!--
     <include package="collective.transmogrifier" file="meta.zcml" />
-    <include package="collective.transmogrifier" />
-    <include package="plone.app.transmogrifier" />
-     <include package="plone.app.z3cform" />
+-->
 
-    <utility
+    <include package="collective.transmogrifier" />
+
+    <include zcml:condition="installed plone.app.transmogrifier" package="plone.app.transmogrifier" />
+    <include zcml:condition="installed plone.app.z3cform" package="plone.app.z3cform" />
+
+    <utility zcml:condition="installed plone.app.z3cform"
         provides="zope.schema.interfaces.IVocabularyFactory"
         component=".helper.MigratorConfigurationsFactory"
         name="collective-migrator-configurations"
         />
 
-    <browser:page
+    <browser:page zcml:condition="installed plone.app.z3cform"
         name="mr.migrator"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         permission="cmf.ManagePortal"
         class=".helper.MigratorView"
         />
-    <browser:page
+    <browser:page zcml:condition="installed plone.app.z3cform"
         name="mr.migrator-run"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         permission="cmf.ManagePortal"

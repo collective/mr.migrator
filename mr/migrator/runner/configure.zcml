@@ -1,12 +1,12 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="mr.migrator"
     >
 
     <include package="zope.app.component" file="meta.zcml"/>
     <include package="collective.transmogrifier" file="meta.zcml"/>
-    <include package="collective.transmogrifier.sections"/>
+    <include package="collective.transmogrifier.sections"/> 
     <include package="z3c.autoinclude" file="meta.zcml" />
-    <includePlugins package="transmogrify"/>
 
 </configure>

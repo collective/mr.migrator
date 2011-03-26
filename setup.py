@@ -36,7 +36,7 @@ tests_require=['zope.testing', 'zc.buildout']
 
 setup(name='mr.migrator',
       version=version,
-      description="Your friend in helping you migrate content",
+      description="Drive-by transmogrifiction made easy!",
       long_description=long_description,
       # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[

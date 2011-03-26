@@ -1,5 +1,5 @@
-Mr.Migrator: Your friend in helping you migrate content
-*******************************************************
+Mr.Migrator: Drive-by transmogrifiction made easy!
+**************************************************
 
 mr.migrator is a transmogrifier pipeline runner, either
 via the commandline or as a Plone plugin.
@@ -63,7 +63,7 @@ You use the commandline help to view the list of available options ::
 
 
 Controlling Logging
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 You can show additional debug output on any particular set by setting a debug commandline switch.
 For instance to see see additional details about template matching failures ::
@@ -73,7 +73,7 @@ For instance to see see additional details about template matching failures ::
   
 
 Working directly with transmogrifier (advanced)
------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You might need to insert further transformation steps for your particular
 conversion usecase. To do this, you can extend a plugins underlying
@@ -152,6 +152,7 @@ TODO
 - read in .cfg files so order of options is preserved so UI looks better
 - hook point for packages to register form along with pipeline
 - allow way of running zcml for blueprint packages in commandline
+- when no pipelines found: display help on where to find them and how to install them
 
 
 Contributing

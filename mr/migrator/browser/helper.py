@@ -10,6 +10,7 @@ from zope.schema import ASCIILine
 from zope.schema import Bool
 from zope.schema import Text
 from zope.schema import URI
+from zope.schema import Password
 from zope.schema.vocabulary import SimpleVocabulary
 from z3c.form import form
 from z3c.form import field
@@ -65,6 +66,8 @@ def formfactory(configname):
 #                name = "%s:%s"%(section_id,key[1:])
             if metavar == 'HIDDEN':
                 continue
+            elif metavar == 'PASSWORD':
+                ftype = Password()
             elif metavar == 'INT':
                 ftype = Int()
                 if default:
@@ -85,7 +88,7 @@ def formfactory(configname):
                 default = len(default)
             else:
                 ftype = TextLine()
-            ftype.__name__ = key.replace('-', '_')
+            ftype.__name__ = "%s-%s"%(section_id,key.replace('-', '_'))
             ftype.title=unicode(title)
             ftype.description=unicode(help)
             ftype.required=False
@@ -117,19 +120,33 @@ class MigratorRun(group.GroupForm, form.Form):
         return super(MigratorRun, self).update()
 
     def updateWidgets(self):
-        import ipdb; ipdb.set_trace()
         super(MigratorRun, self).updateWidgets()
         self.widgets['config'].mode = interfaces.HIDDEN_MODE
 
     @button.buttonAndHandler(u'Run')
     def handleRun(self, action):
-        import ipdb; ipdb.set_trace()
         data, errors = self.extractData()
         if errors:
             return False
 
+        overrides = {}
+        for key, value in data.items():
+            if '-' not in key:
+                continue
+            elif value is None:
+                continue
+            elif type(value) is list:
+                value = '\n'.join(value)
+            elif type(value) is bool:
+                value = value and 'True' or 'False'
+            else:
+                value = str(value)
+            section,key = key.split('-')
+            overrides.setdefault(section, {})[key] = value
+
+#        import ipdb; ipdb.set_trace()
         logger.info("Start importing profile: " + data['config'])
-        Transmogrifier(self.context)(data['config'])
+        Transmogrifier(self.context)(data['config'], **overrides)
         logger.info("Stop importing profile: " + data['config'])
 
 

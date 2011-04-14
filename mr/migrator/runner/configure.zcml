@@ -7,6 +7,7 @@
 <!--
     <include package="zope.app.component" file="meta.zcml"/>
 -->
+    <include package="zope.component" file="meta.zcml"/>
     <include package="collective.transmogrifier" file="meta.zcml"/>
     <include package="collective.transmogrifier.sections"/> 
     <include package="z3c.autoinclude" file="meta.zcml" />

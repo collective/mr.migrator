@@ -1,4 +1,6 @@
-from collective.transmogrifier.tests import registerConfig
+
+#from collective.transmogrifier.tests import registerConfig
+
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from pkg_resources import resource_string, resource_filename
 from collective.transmogrifier.transmogrifier import configuration_registry

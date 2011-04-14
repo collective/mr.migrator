@@ -10,6 +10,10 @@
     <include package="zope.component" file="meta.zcml"/>
     <include package="collective.transmogrifier" file="meta.zcml"/>
     <include package="collective.transmogrifier.sections"/> 
-    <include package="z3c.autoinclude" file="meta.zcml" />
+
+
+    <configure zcml:condition="installed z3c.autoinclude">
+        <include package="z3c.autoinclude" file="meta.zcml" />
+    </configure>
 
 </configure>

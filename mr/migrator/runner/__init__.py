@@ -11,13 +11,6 @@ import sys
 import ConfigParser
 
 import logging
-try:
-    from Zope2.App.zcml import load_config
-except:
-    try:
-        from Products.Five.zcml import load_config
-    except:
-        from zope.configuration.xmlconfig import XMLConfig as load_config
 
 logging.basicConfig(level=logging.INFO)
                     
@@ -109,8 +102,16 @@ def runner(args={}, pipeline=None):
     else:
         config = args.get('pipeline', config)
 
-    load_config('configure.zcml', mr.migrator)
-
+    try:
+        from Zope2.App.zcml import load_config
+        load_config('configure.zcml', mr.migrator)
+    except:
+        try:
+            from Products.Five.zcml import load_config
+            load_config('configure.zcml', mr.migrator)
+        except:
+            from zope.configuration.xmlconfig import XMLConfig as load_config
+            load_config('configure.zcml', mr.migrator)()
 
     context = Context()
     configuration_registry.registerConfiguration(

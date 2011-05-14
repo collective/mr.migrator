@@ -61,7 +61,8 @@ setup(name='mr.migrator',
                         'Products.CMFCore', # cause transmogrifier needs it
                 'zope.app.pagetemplate',
                 'zope.app.component',
-          'z3c.autoinclude'
+          'z3c.autoinclude',
+          'configparser'
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,

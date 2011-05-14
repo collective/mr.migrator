@@ -6,7 +6,7 @@ import mr.migrator
 from optparse import OptionParser, OptionGroup
 
 import sys
-import ConfigParser
+import configparser
 
 import logging
 try:
@@ -26,6 +26,8 @@ class NoErrorParser(OptionParser):
         pass
  
 def runner(args={}, pipeline=None):
+    zcml.load_config('configure.zcml', mr.migrator)
+
     parser = OptionParser()
     
     parser.add_option("--pipeline", dest="pipeline",
@@ -46,8 +48,14 @@ def runner(args={}, pipeline=None):
         config = pipeline
     else:
         config = resource_filename(__name__,'pipeline.cfg')
-    cparser = ConfigParser.RawConfigParser()
-    cparser.read(config)
+    cparser = configparser.ConfigParser()
+    try:
+        fp = open(config)
+    except:
+        config_info = configuration_registry.getConfiguration(config)
+        fp = open(config_info['configuration'])
+    cparser.read_file(fp)
+    fp.close()
     pipeline = [p.strip() for p in cparser.get('transmogrifier','pipeline').split()]
     for section in pipeline:
         if section == 'transmogrifier':
@@ -103,8 +111,6 @@ def runner(args={}, pipeline=None):
         return
     else:
         config = args.get('pipeline', config)
-
-    zcml.load_config('configure.zcml', mr.migrator)
 
 
     context = Context()

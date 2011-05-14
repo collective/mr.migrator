@@ -17,15 +17,25 @@ Transmogrifier is a powerful tool for creating transformation processes called "
 Transmogrifier gives you the tools to create and share these pipelines but doesn't provide
 an easy way to run the pipeline. Mr.migrator aims to bridge that gap.
 
-Mr.Mirgrator provides the following:
+Mr.Migrator provides the following:
 
 - A buildout recipe with you can override a given pipeline and will also create a
-  the commandline script to run the pipeline
-- A commandline script with help which lets you run pipelines and see their progress.
+  the commandline script to run the pipeline.
+- A commandline script with help which lets you run pipelines and see their progress. This
+  is useful used in conjunction with `transmogrify.ploneremote`_ or other blueprints which
+  don't need expect to be run inside the `Plone`_ process.
 - A Plone plugin which when installed lets you pick which pipeline you want to run,
-  provides a form to override pipeline options and then provides progress on the running
-  pipeline.
+  provides a form to override the pipeline options and then provides progress on the running
+  pipeline. This is useful when you want to use `plone.app.transmogrifier`_ blueprints
+  which expect to be run inside the `Plone`_ process.
 
+Getting a pipeline
+------------------
+
+TODO
+
+- where to find registered pipelines
+- how to build your own
 
 Buildout and commandline
 ------------------------
@@ -127,9 +137,15 @@ in its ``setup.py`` ::
    ``transmogrify.ploneremote`` is already included in funnelweb as it is
    what funnelweb's default pipeline uses.
 
+Help syntax for pipeline configuration
+--------------------------------------
+
+TODO
 
 Mr.Migrator in Plone
 --------------------
+
+***under development***
 
 Mr.Migrator needs to be combined with a package providing a registered pipeline.
 
@@ -147,9 +163,7 @@ TODO
 
 - Finish autoform so works in all cases
 - combine argsparse and autoform code
-- allow commandline to work with registered pipelines via "package:name" syntax.
 - do progress dialog
-- read in .cfg files so order of options is preserved so UI looks better
 - hook point for packages to register form along with pipeline
 - allow way of running zcml for blueprint packages in commandline
 - when no pipelines found: display help on where to find them and how to install them

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Recipe funnelweb"""
+"""Recipe mr.migrator"""
 
 from zc.recipe.egg.egg import Scripts
 from urllib import pathname2url as url

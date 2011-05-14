@@ -1,4 +1,6 @@
-from collective.transmogrifier.tests import registerConfig
+
+#from collective.transmogrifier.tests import registerConfig
+
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from pkg_resources import resource_string, resource_filename
 from collective.transmogrifier.transmogrifier import configuration_registry
@@ -9,10 +11,6 @@ import sys
 import configparser
 
 import logging
-try:
-    from Zope2.App import zcml
-except:
-    from Products.Five import zcml
 
 logging.basicConfig(level=logging.INFO)
                     
@@ -26,7 +24,16 @@ class NoErrorParser(OptionParser):
         pass
  
 def runner(args={}, pipeline=None):
-    zcml.load_config('configure.zcml', mr.migrator)
+    try:
+        from Zope2.App.zcml import load_config
+        load_config('configure.zcml', mr.migrator)
+    except:
+        try:
+            from Products.Five.zcml import load_config
+            load_config('configure.zcml', mr.migrator)
+        except:
+            from zope.configuration.xmlconfig import XMLConfig as load_config
+            load_config('configure.zcml', mr.migrator)()
 
     parser = OptionParser()
     

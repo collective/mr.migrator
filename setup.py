@@ -56,14 +56,21 @@ setup(name='mr.migrator',
       include_package_data=True,
       zip_safe=False,
       install_requires=['setuptools',
-                        'zc.buildout',
-                        'zc.recipe.egg',
+#                        'zc.buildout',
+#                        'zc.recipe.egg',
                         'collective.transmogrifier',
+<<<<<<< HEAD
                         'Products.CMFCore', # cause transmogrifier needs it
                 'zope.app.pagetemplate',
                 'zope.app.component',
           'z3c.autoinclude',
           'configparser'
+=======
+#                        'Products.CMFCore', # cause transmogrifier needs it
+#                'zope.app.pagetemplate',
+#                'zope.app.component',
+#          'z3c.autoinclude'
+>>>>>>> 101fc6b04452e5c0cb1ec7460b59a972f2e7889f
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,

@@ -32,13 +32,86 @@ Mr.Migrator provides the following:
 Getting a pipeline
 ------------------
 
-TODO
+A pipeline is a concept from `collective.transmogrifier`_ where dictionary items pass there a series
+of steps, each adding, removing or uploading information to an external source. A pipeline
+is configured in configuration file using the INI style syntax. Mr.Migrator lets you run either
+pipelines you built yourself, or
 
-- where to find registered pipelines
-- how to build your own
+Build your own pipeline
+~~~~~~~~~~~~~~~~~~~~~~~
+see `collective.transmogrifer pipelines`_ for more details.
 
-Buildout and commandline
-------------------------
+Once you've created your pipeline .cfg you can use it on the commandline via ::
+
+ migrate --pipeline=mypipeline.cfg
+
+or if installing via buildout ::
+
+  [migrate]
+  recipe = mr.migrator
+  pipeline = mypipeline.cfg
+
+If you're using blueprints in your pipeline you will need to ensure that zcml configuration
+that registers them is executed. If you are using buildout you can use the following ::
+
+  [buildout]
+  parts += mr.migrator
+
+  [migrator]
+  recipe = mr.migrator
+  pipeline = mypipeline.cfg
+  eggs = transmogrify.sqlalchemy
+  zcml = transmogrify.sqlalchemy
+
+This will ensure that the package that contains the blueprints is downloaded and the zcml for it
+is run before the pipeline is run so that the blueprints are registered.
+
+If you the blueprint package includes the following entry_point you can skip the zcml value above ::
+
+  entry-points = {"z3c.autoinclude.plugin":['target = transmogrify']}
+
+
+There currently isn't a way to run a custom pipeline if using the Plone plugin. You will have
+to register it as below.
+
+Using a Registered Pipeline
+~~~~~~~~~~~~~~~~~~~~~~
+
+If a pipeline has been registered inside another package via zcml such as ::
+
+    <configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
+        i18n_domain="collective.transmogrifier">
+
+    <transmogrifier:registerConfig
+        name="exampleconfig"
+        title="Example pipeline configuration"
+        description="This is an example pipeline configuration"
+        configuration="example.cfg"
+        />
+
+    </configure>
+
+and the package has an entry point that will enable the zcml to be loaded such as ::
+
+      entry_points = {"z3c.autoinclude.plugin":['target = transmogrify']}
+
+Then you can get mr.migrator to run that pipeline via ::
+
+  migrate --pipeline=exampleconfig
+
+or ::
+
+  [migrate]
+  recipe = mr.migrator
+  pipeline = exampleconfig
+
+An example of a package which declares a pipeline designed to be overridden is `funnelweb`_.
+
+
+Overriding pipeline values
+--------------------------
 
 Pipelines are organised as a series of steps through which crawled items pass before eventually being
 uploaded. Each step as one or more configuration options so you can customise import process
@@ -185,4 +258,7 @@ Thanks
 - Dylan Jay - the original code of the commandline runner
 
 
-
+.. `collective.transmogrifier pipelines`: http://pypi.python.org/pypi/collective.transmogrifier/#pipelines
+.. `collective.transmogrifier`: http://pypi.python.org/pypi/collective.transmogrifier
+.. `Plone`: http://plone.org
+.. `funnelweb`: http://pypi.python.org/pypi/funnelweb

@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="mr.migrator"
     >
 
@@ -10,6 +11,6 @@
     <includePlugins package="transmogrify"/>
 
     <include package=".runner"/>
-    <include package=".browser"/>
+    <include package=".browser" zcml:condition="installed plone.app.z3cform"/>
 
 </configure>

@@ -56,11 +56,19 @@ def runner(args={}, pipeline=None):
     else:
         config = resource_filename(__name__,'pipeline.cfg')
     cparser = configparser.ConfigParser()
+    context = Context()
     try:
-        fp = open(config)
-    except:
         config_info = configuration_registry.getConfiguration(config)
         fp = open(config_info['configuration'])
+        pipelineid = config
+    except:
+        fp = open(config)
+        configuration_registry.registerConfiguration(
+            u'transmogrify.config.mr.migrator',
+            u"",
+            u'', config)
+        pipelineid = 'transmogrify.config.mr.migrator'
+
     cparser.read_file(fp)
     fp.close()
     pipeline = [p.strip() for p in cparser.get('transmogrifier','pipeline').split()]
@@ -116,15 +124,6 @@ def runner(args={}, pipeline=None):
         print f.read()
         f.close()
         return
-    else:
-        config = args.get('pipeline', config)
-
-
-    context = Context()
-    configuration_registry.registerConfiguration(
-        u'transmogrify.config.mr.migrator',
-        u"",
-        u'', config)
 
     transmogrifier = Transmogrifier(context)
     overrides = {}
@@ -136,6 +135,6 @@ def runner(args={}, pipeline=None):
     else:
         overrides = args
         
-    transmogrifier(u'transmogrify.config.mr.migrator', **overrides)
+    transmogrifier(pipelineid, **overrides)
 
 

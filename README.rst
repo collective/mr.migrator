@@ -263,5 +263,6 @@ Thanks
 
 .. `collective.transmogrifier pipelines`: http://pypi.python.org/pypi/collective.transmogrifier/#pipelines
 .. `collective.transmogrifier`: http://pypi.python.org/pypi/collective.transmogrifier
-.. `Plone`: http://plone.org
+.. `plone`: http://plone.org
 .. `funnelweb`: http://pypi.python.org/pypi/funnelweb
+

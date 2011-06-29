@@ -11,6 +11,16 @@ import sys
 import configparser
 
 import logging
+try:
+    from Zope2.App.zcml import load_config
+except:
+    try:
+        from Products.Five.zcml import load_config
+    except:
+        from zope.configuration.xmlconfig import XMLConfig as load_config
+        load_config = lambda config, context: load_config(config, context)()
+
+
 
 logging.basicConfig(level=logging.INFO)
                     
@@ -24,16 +34,7 @@ class NoErrorParser(OptionParser):
         pass
  
 def runner(args={}, pipeline=None):
-    try:
-        from Zope2.App.zcml import load_config
-        load_config('configure.zcml', mr.migrator)
-    except:
-        try:
-            from Products.Five.zcml import load_config
-            load_config('configure.zcml', mr.migrator)
-        except:
-            from zope.configuration.xmlconfig import XMLConfig as load_config
-            load_config('configure.zcml', mr.migrator)()
+    load_config('configure.zcml', mr.migrator)
 
     parser = OptionParser()
     
@@ -44,6 +45,10 @@ def runner(args={}, pipeline=None):
     parser.add_option("--show-pipeline", dest="showpipeline",
                       action = "store_true",
                       help="Show contents of the pipeline"
+                      )
+    parser.add_option("--zcml", dest="zcml",
+                      action = "store",
+                      help="Load zcml"
                       )
     # Parse just the pipeline args
     ispipeline = lambda arg: [a for a in ['--pipeline','--show-pipeline'] if arg.startswith(a)]
@@ -124,6 +129,12 @@ def runner(args={}, pipeline=None):
         print f.read()
         f.close()
         return
+
+    if options.zcml:
+        for zcml in options.zcml.split():
+            if not zcml.strip():
+                continue
+            load_config('configure.zcml', __import__(zcml))
 
     transmogrifier = Transmogrifier(context)
     overrides = {}

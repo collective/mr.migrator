@@ -242,7 +242,6 @@ TODO
 - combine argsparse and autoform code
 - do progress dialog
 - hook point for packages to register form along with pipeline
-- allow way of running zcml for blueprint packages in commandline
 - when no pipelines found: display help on where to find them and how to install them
 
 

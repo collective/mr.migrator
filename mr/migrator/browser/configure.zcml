@@ -12,27 +12,31 @@
 
     <include package="collective.transmogrifier" />
 
-    <include zcml:condition="installed plone.app.transmogrifier" package="plone.app.transmogrifier" />
-    <include zcml:condition="installed plone.app.z3cform" package="plone.app.z3cform" />
+    <include package="plone.app.transmogrifier" />
+    <include package="plone.app.z3cform" />
 
-    <utility zcml:condition="installed plone.app.z3cform"
+    <utility
         provides="zope.schema.interfaces.IVocabularyFactory"
         component=".helper.MigratorConfigurationsFactory"
         name="collective-migrator-configurations"
         />
 
-    <browser:page zcml:condition="installed plone.app.z3cform"
+    <browser:page
         name="mr.migrator"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        for="*"
         permission="cmf.ManagePortal"
         class=".helper.MigratorView"
+        layer=".interfaces.IMrMigratorLayer"
         />
-    <browser:page zcml:condition="installed plone.app.z3cform"
+    <browser:page
         name="mr.migrator-run"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        for="*"
         permission="cmf.ManagePortal"
         class=".helper.MigratorRunView"
+        layer=".interfaces.IMrMigratorLayer"
         />
+
+
 
 
 </configure>

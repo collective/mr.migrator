@@ -79,7 +79,7 @@ There currently isn't a way to run a custom pipeline if using the Plone plugin. 
 to register it as below.
 
 Using a Registered Pipeline
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If a pipeline has been registered inside another package via zcml such as ::
 

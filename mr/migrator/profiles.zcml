@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="mr.migrator"
+    >
+
+
+<genericsetup:registerProfile
+    name="default"
+    title="Mr.Migrator"
+    directory="profiles/default"
+    description='Adds ability to run transmogrifier into any folder'
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+</configure>

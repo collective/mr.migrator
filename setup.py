@@ -60,6 +60,7 @@ setup(name='mr.migrator',
         'collective.transmogrifier',
         'configparser',
         'z3c.autoinclude',
+        'zc.recipe.egg',
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,

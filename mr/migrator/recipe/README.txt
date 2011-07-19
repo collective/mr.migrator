@@ -45,7 +45,7 @@ We'll start by creating a buildout that uses the recipe::
     ... parts = test1
     ...
     ... [test1]
-    ... recipe = funnelweb
+    ... recipe = mr.migrator
     ... option1 = %(foo)s
     ... option2 = %(bar)s
     ... """ % { 'foo' : 'value1', 'bar' : 'value2'})

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Doctest runner for 'funnelweb'.
+Doctest runner for 'mr.migrator'.
 """
 __docformat__ = 'restructuredtext'
 
@@ -18,7 +18,7 @@ def setUp(test):
     zc.buildout.testing.buildoutSetUp(test)
 
     # Install the recipe in develop mode
-    zc.buildout.testing.install_develop('funnelweb', test)
+    zc.buildout.testing.install_develop('mr.migrator', test)
 
     # Install any other recipes that should be available in the tests
     #zc.buildout.testing.install('collective.recipe.foobar', test)

@@ -57,9 +57,9 @@ setup(name='mr.migrator',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'collective.transmogrifier',
+#        'collective.transmogrifier',
         'configparser',
-        'z3c.autoinclude',
+#        'z3c.autoinclude',
                         # -*- Extra requirements: -*-
                         ],
       tests_require=tests_require,

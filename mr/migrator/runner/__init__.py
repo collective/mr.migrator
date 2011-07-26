@@ -79,8 +79,15 @@ def runner(args={}, pipeline=None):
             u'', config)
         pipelineid = 'transmogrify.config.mr.migrator'
 
-    cparser.read_file(fp)
+    try:
+        # configparser
+        cparser.read_file(fp)
+    except:
+        # ConfigParser
+        cparser.read(config)
+
     fp.close()
+     
     pipeline = [p.strip() for p in cparser.get('transmogrifier','pipeline').split()]
     for section in pipeline:
         if section == 'transmogrifier':

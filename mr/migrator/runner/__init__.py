@@ -8,7 +8,11 @@ import mr.migrator
 from optparse import OptionParser, OptionGroup
 
 import sys
-import configparser
+
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
 
 import logging
 try:

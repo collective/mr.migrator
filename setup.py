@@ -1,14 +1,31 @@
 # -*- coding: utf-8 -*-
 """
-This module contains the tool of funnelweb
+This module contains mr.migrator
 """
 import os
 from setuptools import setup, find_packages
 
+install_requires=[
+    'setuptools',
+# XXX Do we really want to require these?
+#    'collective.transmogrifier',
+#    'configparser',
+#    'z3c.autoinclude',
+    ]
+
+# http://stackoverflow.com/questions/446052/python-best-way-to-check-for-python-version-in-program-that-uses-new-language-fe
+try:
+    # If we are in 2.5 or greater we can require configparser
+    eval("1 if True else 2")
+    install_requires.append('configparser')
+except SyntaxError:
+    # If we are in 2.4 or lower we cannot require configparser
+    pass
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '1.0b1'
+version = '1.0b2'
 
 long_description = (
     read('README.rst')
@@ -55,13 +72,7 @@ setup(name='mr.migrator',
       namespace_packages=['mr'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=[
-        'setuptools',
-#        'collective.transmogrifier',
-        'configparser',
-#        'z3c.autoinclude',
-                        # -*- Extra requirements: -*-
-                        ],
+      install_requires=install_requires,
       tests_require=tests_require,
       extras_require=dict(tests=tests_require),
       test_suite = 'mr.migrator.recipe.tests.test_docs.test_suite',

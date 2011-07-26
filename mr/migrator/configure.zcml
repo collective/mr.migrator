@@ -4,7 +4,14 @@
     i18n_domain="mr.migrator"
     >
 
-    <include package="zope.app.component" file="meta.zcml"/>
+    <configure zcml:condition="installed zope.app.component">
+        <include package="zope.app.component" file="meta.zcml"/>
+    </configure>
+
+    <configure zcml:condition="not-installed zope.app.component">
+        <include package="zope.component" file="meta.zcml"/>
+    </configure>
+
     <include package="collective.transmogrifier" file="meta.zcml"/>
     <include package="collective.transmogrifier.sections"/>
     <include package="z3c.autoinclude" file="meta.zcml" />

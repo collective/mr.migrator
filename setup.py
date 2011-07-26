@@ -9,7 +9,7 @@ install_requires=[
     'setuptools',
     'collective.transmogrifier',
     'z3c.autoinclude',
-    'zope.app.component',
+#    'zope.app.component',
     ]
 
 # http://stackoverflow.com/questions/446052/python-best-way-to-check-for-python-version-in-program-that-uses-new-language-fe

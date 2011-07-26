@@ -22,8 +22,9 @@ except:
         from Products.Five.zcml import load_config
     except:
         from zope.configuration.xmlconfig import XMLConfig as load_config
-        load_config = lambda config, context: load_config(config, context)()
 
+        # XXX What is this?
+#        load_config = lambda config, context: load_config(config, context)()
 
 
 logging.basicConfig(level=logging.INFO)

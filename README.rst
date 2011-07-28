@@ -261,8 +261,8 @@ Thanks
 - Dylan Jay - the original code of the commandline runner
 
 
-.. `collective.transmogrifier pipelines`: http://pypi.python.org/pypi/collective.transmogrifier/#pipelines
-.. `collective.transmogrifier`: http://pypi.python.org/pypi/collective.transmogrifier
-.. `plone`: http://plone.org
-.. `funnelweb`: http://pypi.python.org/pypi/funnelweb
+.. _`collective.transmogrifier pipelines`: http://pypi.python.org/pypi/collective.transmogrifier/#pipelines
+.. _`collective.transmogrifier`: http://pypi.python.org/pypi/collective.transmogrifier
+.. _`plone`: http://plone.org
+.. _`funnelweb`: http://pypi.python.org/pypi/funnelweb
 

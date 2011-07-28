@@ -39,7 +39,7 @@ pipelines you built yourself, or
 
 Build your own pipeline
 ~~~~~~~~~~~~~~~~~~~~~~~
-see `collective.transmogrifer pipelines`_ for more details.
+see collective.transmogrifer `pipelines`_ for more details.
 
 Once you've created your pipeline .cfg you can use it on the commandline via ::
 
@@ -261,8 +261,11 @@ Thanks
 - Dylan Jay - the original code of the commandline runner
 
 
-.. _`collective.transmogrifier pipelines`: http://pypi.python.org/pypi/collective.transmogrifier/#pipelines
+.. _`pipelines`: http://pypi.python.org/pypi/collective.transmogrifier/#pipelines
 .. _`collective.transmogrifier`: http://pypi.python.org/pypi/collective.transmogrifier
-.. _`plone`: http://plone.org
 .. _`funnelweb`: http://pypi.python.org/pypi/funnelweb
+.. _`plone`: http://plone.org
+.. _`plone.app.transmogrifier`: http://pypi.python.org/pypi/plone.app.transmogrifier
+.. _`transmogrify.ploneremote`: http://pypi.python.org/pypi/transmogrify.ploneremote
+
 

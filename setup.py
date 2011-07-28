@@ -7,10 +7,9 @@ from setuptools import setup, find_packages
 
 install_requires=[
     'setuptools',
-# XXX Do we really want to require these?
-#    'collective.transmogrifier',
-#    'configparser',
-#    'z3c.autoinclude',
+    'collective.transmogrifier',
+    'z3c.autoinclude',
+#    'zope.app.component',
     ]
 
 # http://stackoverflow.com/questions/446052/python-best-way-to-check-for-python-version-in-program-that-uses-new-language-fe

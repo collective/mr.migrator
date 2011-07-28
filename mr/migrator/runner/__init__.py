@@ -22,8 +22,9 @@ except:
         from Products.Five.zcml import load_config
     except:
         from zope.configuration.xmlconfig import XMLConfig as load_config
-        load_config = lambda config, context: load_config(config, context)()
 
+        # XXX What is this?
+#        load_config = lambda config, context: load_config(config, context)()
 
 
 logging.basicConfig(level=logging.INFO)
@@ -78,8 +79,15 @@ def runner(args={}, pipeline=None):
             u'', config)
         pipelineid = 'transmogrify.config.mr.migrator'
 
-    cparser.read_file(fp)
+    try:
+        # configparser
+        cparser.read_file(fp)
+    except:
+        # ConfigParser
+        cparser.read(config)
+
     fp.close()
+     
     pipeline = [p.strip() for p in cparser.get('transmogrifier','pipeline').split()]
     for section in pipeline:
         if section == 'transmogrifier':

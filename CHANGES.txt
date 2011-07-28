@@ -1,4 +1,9 @@
 
+1.0b2 (2011-07-28)
+------------------
+
+- Bug fix: Python 2.4 compat
+
 1.0b1 (2011-06-29)
 ------------------
 - allow way of running zcml for blueprint packages in commandline

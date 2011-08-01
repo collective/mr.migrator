@@ -5,6 +5,9 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="mr.migrator">
 
+    <include package="plone.app.transmogrifier" />
+    <include package="plone.app.z3cform" />
+
     <utility
         provides="zope.schema.interfaces.IVocabularyFactory"
         component=".helper.MigratorConfigurationsFactory"

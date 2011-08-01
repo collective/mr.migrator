@@ -6,9 +6,6 @@
 
     <include package="collective.transmogrifier" file="meta.zcml" />
 
-    <include package="plone.app.transmogrifier" />
-    <include package="plone.app.z3cform" />
-
     <configure zcml:condition="installed zope.app.component">
         <include package="zope.app.component" file="meta.zcml"/>
     </configure>

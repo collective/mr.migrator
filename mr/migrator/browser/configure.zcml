@@ -30,4 +30,11 @@
         layer=".interfaces.IMrMigratorLayer"
         />
 
+    <browser:page
+        name="migrate"
+        class=".helper.TTWPipelineExecutor"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>

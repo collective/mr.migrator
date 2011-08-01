@@ -1,6 +1,7 @@
 
 import urllib
 from zope.interface import Interface
+from zope.publisher.browser import BrowserPage
 from zope.schema import URI
 from zope.schema import Int
 from zope.schema import List
@@ -196,3 +197,23 @@ class Migrator(form.Form):
 MigratorConfigurationsFactory = MigratorConfigurations()
 MigratorRunView = wrap_form(MigratorRun)
 MigratorView = wrap_form(Migrator)
+
+
+class TTWPipelineExecutor(BrowserPage):
+    """
+    Usage: curl http://admin:admin@localhost:8080/Plone/@@migrate/<pipeline>
+    """
+
+    def __call__(self):
+        return self.__doc__
+
+    def publishTraverse(self, request, name):
+        for lang in langservs:
+            if name == lang:
+                transmogrifier = Transmogrifier(self.context)
+                try:
+                    transmogrifier(lang)
+                    return 'Done: %s!' % lang
+                except:
+                    import sys, traceback
+                    return traceback.format_exc(sys.exc_info()[2])

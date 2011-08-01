@@ -1,9 +1,0 @@
-<configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
-    i18n_domain="mr.migrator"
-    >
-
-    <!-- XXX What goes here? Nothing AFAICT. -->
-
-</configure>

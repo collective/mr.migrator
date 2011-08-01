@@ -6,22 +6,26 @@
 
     <include package="collective.transmogrifier" file="meta.zcml" />
 
+    <!-- Plone UI -->
+    <include file="profiles.zcml" zcml:condition="installed plone.app.z3cform"/>
+    <include package=".browser" zcml:condition="installed plone.app.z3cform"/>
+
+    <!-- Main mr.migrator feature -->
+    <include package=".runner"/>
+
+    <!-- BBB -->
     <configure zcml:condition="installed zope.app.component">
         <include package="zope.app.component" file="meta.zcml"/>
     </configure>
-
     <configure zcml:condition="not-installed zope.app.component">
         <include package="zope.component" file="meta.zcml"/>
     </configure>
 
-    <include package="collective.transmogrifier.sections"/>
+    <!-- Load ZCML for blueprints that declare ``transmogrify`` entry point -->
     <include package="z3c.autoinclude" file="meta.zcml" />
-
-    <include package=".runner"/>
-    
-    <include file="profiles.zcml" zcml:condition="installed plone.app.z3cform"/>
-    <include package=".browser" zcml:condition="installed plone.app.z3cform"/>
-
     <includePlugins package="transmogrify"/>
+
+    <!-- Do we need/use this? -->
+    <include package="collective.transmogrifier.sections"/>
 
 </configure>

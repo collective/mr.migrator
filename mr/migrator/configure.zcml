@@ -5,10 +5,10 @@
     >
 
     <include package="collective.transmogrifier" file="meta.zcml" />
+    <include package=".browser" /> 
 
     <!-- Plone UI -->
     <include file="profiles.zcml" zcml:condition="installed plone.app.z3cform"/>
-    <include package=".browser" zcml:condition="installed plone.app.z3cform"/>
 
     <!-- BBB -->
     <configure zcml:condition="installed zope.app.component">

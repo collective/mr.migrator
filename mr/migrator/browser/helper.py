@@ -198,22 +198,18 @@ MigratorConfigurationsFactory = MigratorConfigurations()
 MigratorRunView = wrap_form(MigratorRun)
 MigratorView = wrap_form(Migrator)
 
-
+usage = 'Usage: curl http://admin:admin@localhost:8080/Plone/@@migrate/<pipeline>'
 class TTWPipelineExecutor(BrowserPage):
-    """
-    Usage: curl http://admin:admin@localhost:8080/Plone/@@migrate/<pipeline>
-    """
 
     def __call__(self):
-        return self.__doc__
+        return usage
 
     def publishTraverse(self, request, name):
-        for lang in langservs:
-            if name == lang:
-                transmogrifier = Transmogrifier(self.context)
-                try:
-                    transmogrifier(lang)
-                    return 'Done: %s!' % lang
-                except:
-                    import sys, traceback
-                    return traceback.format_exc(sys.exc_info()[2])
+        transmogrifier = Transmogrifier(self.context)
+        try:
+            transmogrifier(name)
+            return 'Done: %s!' % name
+        except:
+            import sys, traceback
+            return traceback.format_exc(sys.exc_info()[2])
+

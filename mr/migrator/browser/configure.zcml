@@ -5,12 +5,7 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="mr.migrator">
 
-
-<!--
     <include package="collective.transmogrifier" file="meta.zcml" />
--->
-
-    <include package="collective.transmogrifier" />
 
     <include package="plone.app.transmogrifier" />
     <include package="plone.app.z3cform" />
@@ -35,8 +30,5 @@
         class=".helper.MigratorRunView"
         layer=".interfaces.IMrMigratorLayer"
         />
-
-
-
 
 </configure>

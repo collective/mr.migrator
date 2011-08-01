@@ -1,1 +1,2 @@
 "Dylan Jay", Author
+"Alex Clark", Developer/Maintainer

@@ -1,8 +1,11 @@
 
-1.0b2 (2011-07-28)
+1.0b2 (Unreleased)
 ------------------
 
 - Bug fix: Python 2.4 compat
+  [aclark]
+- Add TTWPipelineExecutor
+  [aclark]
 
 1.0b1 (2011-06-29)
 ------------------

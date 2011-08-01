@@ -39,7 +39,7 @@
 
     <browser:page
         name="migrate"
-        class=".helper.TTWPipelineExecutor"
+        class=".ttwpe.TTWPipelineExecutor"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         permission="cmf.ManagePortal"
         />

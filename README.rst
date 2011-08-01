@@ -2,7 +2,7 @@ Mr.Migrator: Drive-by transmogrification made easy!
 ***************************************************
 
 mr.migrator is a transmogrifier pipeline runner, either
-via the commandline or as a Plone plugin.
+via the commandline or as a Plone add-on.
 
 - Code repository: http://github.com/collective/mr.migrator
 - Questions and comments to http://github.com/collective/mr.migrator/issues

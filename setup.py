@@ -13,7 +13,7 @@ install_requires=[
 
 try:
     # If we are using Python 2.5 or greater we can require configparser
-    eval("1 if True else 2")  # http://stackoverflow.com/questions/446052/python-best-way-to-check-for-python-version-in-program-that-uses-new-language-fe
+    eval("1 if True else 2")  # http://stackoverflow.com/questions/446052
     install_requires.append('configparser')
     install_requires.append('zope.app.component')  # BBB Only needed in Plone >= 4?
 except SyntaxError:

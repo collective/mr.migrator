@@ -1,20 +1,18 @@
-
-#from collective.transmogrifier.tests import registerConfig
-
-from collective.transmogrifier.transmogrifier import Transmogrifier
-from pkg_resources import resource_string, resource_filename
 from collective.transmogrifier.transmogrifier import configuration_registry
-import mr.migrator
+from collective.transmogrifier.transmogrifier import Transmogrifier
 from optparse import OptionParser, OptionGroup
+from pkg_resources import resource_string, resource_filename
 
+import logging
+import mr.migrator
 import sys
+
+logging.basicConfig(level=logging.INFO)
 
 try:
     import configparser
 except ImportError:
     import ConfigParser as configparser
-
-import logging
 try:
     from Zope2.App.zcml import load_config
 except:
@@ -22,13 +20,8 @@ except:
         from Products.Five.zcml import load_config
     except:
         from zope.configuration.xmlconfig import XMLConfig as load_config
+        load_config = lambda config, context: load_config(config, context)()
 
-        # XXX What is this?
-#        load_config = lambda config, context: load_config(config, context)()
-
-
-logging.basicConfig(level=logging.INFO)
-                    
 
 class Context:
     pass
@@ -135,7 +128,6 @@ def runner(args={}, pipeline=None):
     for k,v in cargs.items():
         args.setdefault(k, {}).update(v)
 
-    #config = resource_filename(__name__,'pipeline.cfg')
     if options.showpipeline:
         f = open(config)
         print f.read()
@@ -159,5 +151,3 @@ def runner(args={}, pipeline=None):
         overrides = args
         
     transmogrifier(pipelineid, **overrides)
-
-

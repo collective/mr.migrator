@@ -2,23 +2,22 @@
 """
 This module contains mr.migrator
 """
-import os
 from setuptools import setup, find_packages
+import os
 
 install_requires=[
-    'setuptools',
     'collective.transmogrifier',
+    'setuptools',
     'z3c.autoinclude',
-#    'zope.app.component',
     ]
 
-# http://stackoverflow.com/questions/446052/python-best-way-to-check-for-python-version-in-program-that-uses-new-language-fe
 try:
-    # If we are in 2.5 or greater we can require configparser
-    eval("1 if True else 2")
+    # If we are using Python 2.5 or greater we can require configparser
+    eval("1 if True else 2")  # http://stackoverflow.com/questions/446052/python-best-way-to-check-for-python-version-in-program-that-uses-new-language-fe
     install_requires.append('configparser')
+    install_requires.append('zope.app.component')  # BBB Only needed in Plone >= 4?
 except SyntaxError:
-    # If we are in 2.4 or lower we cannot require configparser
+    # If we are using Python 2.4 or lower we cannot require configparser
     pass
 
 def read(*rnames):

@@ -37,11 +37,4 @@
         </configure>
     </configure>
 
-    <browser:page
-        name="migrate"
-        class=".ttwpe.TTWPipelineExecutor"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        permission="cmf.ManagePortal"
-        />
-
 </configure>

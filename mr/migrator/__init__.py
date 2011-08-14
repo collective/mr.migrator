@@ -6,5 +6,6 @@ try:
     import Products.Five
     from Zope2.App.zcml import load_config
     load_config("configure.zcml", Products.Five)
+    load_config("configure.zcml", Products.GenericSetup)
 except:
     pass

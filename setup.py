@@ -18,7 +18,6 @@ try:
     install_requires.append('zope.app.component')  # BBB Only needed in Plone >= 4?
 except SyntaxError:
     # If we are using Python 2.4 or lower we cannot require configparser
-    install_requires.append('zope.component')  # BBB
     pass
 
 def read(*rnames):

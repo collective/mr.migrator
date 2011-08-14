@@ -1,2 +1,2 @@
-"Dylan Jay", Author
-"Alex Clark", Developer/Maintainer
+* "Dylan Jay", Author
+* "Alex Clark", Maintainer

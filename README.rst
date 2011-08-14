@@ -28,9 +28,6 @@ Mr.Migrator provides the following:
   provides a form to override the pipeline options and then provides progress on the running
   pipeline. This is useful when you want to use `plone.app.transmogrifier`_ blueprints
   which expect to be run inside the `Plone`_ process.
-- A browser view you can call TTW to execute pipelines by name. E.g.::
-
-    $ curl http://admin:admin@localhost:8080/Plone/@@migrate/<pipeline>
 
 Getting a pipeline
 ------------------

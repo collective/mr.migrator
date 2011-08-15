@@ -3,6 +3,7 @@ from collective.transmogrifier.transmogrifier import Transmogrifier
 from optparse import OptionParser, OptionGroup
 from pkg_resources import resource_string, resource_filename
 
+import Products.GenericSetup
 import logging
 import mr.migrator
 import sys

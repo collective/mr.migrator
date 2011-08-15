@@ -34,8 +34,8 @@ class NoErrorParser(OptionParser):
  
 def runner(args={}, pipeline=None):
     # Make sure GS ZCML is loaded before we load ours
-    load_config("configure.zcml", Products.GenericSetup)
     load_config("meta.zcml", Products.GenericSetup)
+    load_config("configure.zcml", Products.GenericSetup)
 
     load_config('configure.zcml', mr.migrator)
 

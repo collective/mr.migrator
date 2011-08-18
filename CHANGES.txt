@@ -1,11 +1,16 @@
+1.0b5 (Unreleased)
+------------------
+
+- Bug fix: support for --zcml arguments
+
 1.0b4 (2011-08-14)
 ------------------
-- Bug fix: More load GS ZCML
+- Bug fix: ZCML config
   [aclark]
 
 1.0b3 (2011-08-14)
 ------------------
-- Bug fix: load GS ZCML
+- Bug fix: ZCML config
   [aclark]
 
 1.0b2 (2011-08-14)

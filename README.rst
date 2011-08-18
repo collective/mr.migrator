@@ -68,7 +68,7 @@ is run before the pipeline is run so that the blueprints are registered.
 
 If you aren't using buildout you can will need to tell the runner which packages to load zcml in via ::
 
- migrate --zcml=transmogrify.sqlalchemy --zcml=transmogrify.other
+ migrate --zcml=transmogrify.sqlalchemy,transmogrify.other
 
 If you the blueprint package includes the following entry_point you can skip the zcml settings above ::
 

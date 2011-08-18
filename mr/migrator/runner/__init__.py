@@ -139,7 +139,7 @@ def runner(args={}, pipeline=None):
         return
 
     if options.zcml:
-        for zcml in options.zcml.split():
+        for zcml in options.zcml.split(','):
             if not zcml.strip():
                 continue
             load_config('configure.zcml', __import__(zcml, fromlist=zcml.split('.')))

@@ -142,7 +142,7 @@ def runner(args={}, pipeline=None):
         for zcml in options.zcml.split():
             if not zcml.strip():
                 continue
-            load_config('configure.zcml', __import__(zcml))
+            load_config('configure.zcml', __import__(zcml, fromlist=zcml.split('.')))
 
     transmogrifier = Transmogrifier(context)
     overrides = {}

@@ -35,10 +35,7 @@ class NoErrorParser(OptionParser):
 
 def runner(args={}, pipeline=None):
     # Make sure GS ZCML is loaded before we load ours
-    load_config("meta.zcml", Products.GenericSetup)
-    load_config("configure.zcml", Products.GenericSetup)
-
-    load_config('configure.zcml', mr.migrator)
+    load_config('autoinclude.zcml', mr.migrator)
 
     parser = OptionParser()
 
@@ -132,19 +129,6 @@ def runner(args={}, pipeline=None):
     for k, v in cargs.items():
         args.setdefault(k, {}).update(v)
 
-    if options.showpipeline:
-        f = open(config)
-        print f.read()
-        f.close()
-        return
-
-    if options.zcml:
-        for zcml in options.zcml.split(','):
-            if not zcml.strip():
-                continue
-            load_config('configure.zcml', __import__(zcml, fromlist=zcml.split('.')))
-
-    transmogrifier = Transmogrifier(context)
     overrides = {}
     if type(args) == type(''):
         for arg in args:
@@ -153,5 +137,25 @@ def runner(args={}, pipeline=None):
             overrides.setdefault('section', {})[key] = value
     else:
         overrides = args
+
+    if options.showpipeline:
+        for section, values in overrides.items():
+            for key,value in values.items():
+                cparser.set(section, key, value)
+        cparser.write(sys.stdout)
+        return
+
+    load_config("meta.zcml", Products.GenericSetup)
+    load_config("configure.zcml", Products.GenericSetup)
+
+    load_config('configure.zcml', mr.migrator)
+
+    if options.zcml:
+        for zcml in options.zcml.split(','):
+            if not zcml.strip():
+                continue
+            load_config('configure.zcml', __import__(zcml, fromlist=zcml.split('.')))
+
+    transmogrifier = Transmogrifier(context)
 
     transmogrifier(pipelineid, **overrides)

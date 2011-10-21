@@ -17,7 +17,6 @@
         <include package="zope.component" file="meta.zcml"/></configure>
 
     <!-- Load ZCML for blueprints that declare ``transmogrify`` entry point -->
-    <include package="z3c.autoinclude" file="meta.zcml" />
-    <includePlugins package="transmogrify" zcml:condition="installed transmogrify" />
+    <include  file="autoinclude.zcml" />
 
 </configure>

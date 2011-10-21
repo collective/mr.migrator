@@ -1,0 +1,11 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="mr.migrator"
+    >
+
+    <!-- Load ZCML for blueprints that declare ``transmogrify`` entry point -->
+    <include package="z3c.autoinclude" file="meta.zcml" />
+    <includePlugins package="transmogrify" zcml:condition="installed transmogrify" />
+
+</configure>

@@ -145,6 +145,7 @@ def runner(args={}, pipeline=None):
         cparser.write(sys.stdout)
         return
 
+    # delay this so arg processing not so slow
     load_config("meta.zcml", Products.GenericSetup)
     load_config("configure.zcml", Products.GenericSetup)
 

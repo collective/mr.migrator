@@ -8,7 +8,7 @@
 
     <!-- Plone UI -->
     <include package=".browser" zcml:condition="installed Products.CMFCore"/>
-    <include file="profiles.zcml" zcml:condition="installed plone.app.z3cform"/>
+    <include file="profiles.zcml" zcml:condition="installed Products.GenericSetup"/>
 
     <!-- BBB -->
     <configure zcml:condition="installed zope.app.component">

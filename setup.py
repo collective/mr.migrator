@@ -9,6 +9,7 @@ install_requires = [
     'collective.transmogrifier',
     'setuptools',
     'z3c.autoinclude',
+    'zc.recipe.egg'
     ]
 
 try:

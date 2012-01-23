@@ -58,7 +58,9 @@ def runner(args={}, pipeline=None):
     elif pipeline is not None:
         config = pipeline
     else:
-        config = resource_filename(__name__, 'pipeline.cfg')
+        # XXX How about if we look for pipeline.cfg in the cwd?
+        # config = resource_filename(__name__, 'pipeline.cfg')
+        config = 'pipeline.cfg'
     cparser = configparser.ConfigParser()
     context = Context()
     try:

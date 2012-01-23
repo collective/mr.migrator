@@ -1,0 +1,5 @@
+# Copy to buildout.cfg and uncomment one config below
+[buildout]
+extends =
+#    conf/test-3.3.x.cfg
+#    conf/test-4.1.x.cfg

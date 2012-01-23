@@ -1,4 +1,4 @@
-1.0b5 (Unreleased)
+1.0b5 (2012-01-22)
 ------------------
 
 - Bug fix: support for --zcml arguments

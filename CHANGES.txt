@@ -1,25 +1,35 @@
-1.0b5 (Unreleased)
+1.0b5 (2012-01-22)
 ------------------
 
 - Bug fix: support for --zcml arguments
+  [aclark]
 
 1.0b4 (2011-08-14)
 ------------------
+
 - Bug fix: ZCML config
   [aclark]
 
 1.0b3 (2011-08-14)
 ------------------
+
 - Bug fix: ZCML config
   [aclark]
 
 1.0b2 (2011-08-14)
 ------------------
+
 - Bug fix: Python 2.4 compat
   [aclark]
 
 1.0b1 (2011-06-29)
 ------------------
+
 - allow way of running zcml for blueprint packages in commandline
+  [djay]
+
 - split out commandline runner from funnelweb
+  [djay]
+
 - add start of form for running transmogrifier inside plone
+  [djay]

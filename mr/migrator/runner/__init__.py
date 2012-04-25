@@ -35,7 +35,17 @@ class NoErrorParser(OptionParser):
 
 def runner(args={}, pipeline=None):
     # Make sure GS ZCML is loaded before we load ours
-    load_config('autoinclude.zcml', mr.migrator)
+    
+    # XXX This delays loading a bit too long. Getting:
+    # ConfigurationError: ('Unknown directive',
+    # u'http://namespaces.zope.org/genericsetup', u'importStep')
+    # again
+    # 
+    # load_config('autoinclude.zcml', mr.migrator)
+
+    load_config("meta.zcml", Products.GenericSetup)
+    load_config("configure.zcml", Products.GenericSetup)
+    load_config('configure.zcml', mr.migrator)
 
     parser = OptionParser()
 
@@ -58,7 +68,9 @@ def runner(args={}, pipeline=None):
     elif pipeline is not None:
         config = pipeline
     else:
-        config = resource_filename(__name__, 'pipeline.cfg')
+        # XXX How about if we look for pipeline.cfg in the cwd?
+        # config = resource_filename(__name__, 'pipeline.cfg')
+        config = 'pipeline.cfg'
 
     pipelineid = load_pipeline(config, parser)
 

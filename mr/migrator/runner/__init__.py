@@ -59,53 +59,9 @@ def runner(args={}, pipeline=None):
         config = pipeline
     else:
         config = resource_filename(__name__, 'pipeline.cfg')
-    cparser = configparser.ConfigParser()
-    context = Context()
-    try:
-        config_info = configuration_registry.getConfiguration(config)
-        fp = open(config_info['configuration'])
-        pipelineid = config
-    except:
-        fp = open(config)
-        configuration_registry.registerConfiguration(
-            u'transmogrify.config.mr.migrator',
-            u"",
-            u'', config)
-        pipelineid = 'transmogrify.config.mr.migrator'
 
-    try:
-        # configparser
-        cparser.read_file(fp)
-    except:
-        # ConfigParser
-        cparser.read(config)
+    pipelineid = load_pipeline(config, parser)
 
-    fp.close()
-
-    pipeline = [
-        p.strip() for p in cparser.get('transmogrifier', 'pipeline').split()]
-    for section in pipeline:
-        if section == 'transmogrifier':
-            continue
-        if cparser.has_option(section, '@doc'):
-            doc = cparser.get(section, '@doc')
-        else:
-            doc = ''
-        group = OptionGroup(parser, section, doc)
-        for key, value in cparser.items(section):
-            if key.startswith('@'):
-                if key == '@doc':
-                    continue
-                metavar, _, help = value.partition(': ')
-                if metavar.upper() == metavar:
-                    action = "store"
-                else:
-                    action = "store_true"
-                    help = value
-                group.add_option("--%s:%s" % (section, key[1:]), action=action,
-                                             help=help,
-                                             metavar=metavar)
-        parser.add_option_group(group)
     pargs = [arg for arg in sys.argv[1:] if not arg.startswith('--template')]
     (options, cargs) = parser.parse_args(pargs)
 
@@ -157,6 +113,63 @@ def runner(args={}, pipeline=None):
                 continue
             load_config('configure.zcml', __import__(zcml, fromlist=zcml.split('.')))
 
+    context = Context()
     transmogrifier = Transmogrifier(context)
 
     transmogrifier(pipelineid, **overrides)
+
+
+def load_pipeline(config, parser):
+    cparser = configparser.ConfigParser()
+    try:
+        config_info = configuration_registry.getConfiguration(config)
+        fp = open(config_info['configuration'])
+        pipelineid = config
+    except:
+        fp = open(config)
+        configuration_registry.registerConfiguration(
+            u'transmogrify.config.mr.migrator',
+            u"",
+            u'', config)
+        pipelineid = 'transmogrify.config.mr.migrator'
+
+    try:
+        # configparser
+        cparser.read_file(fp)
+    except:
+        # ConfigParser
+        cparser.read(config)
+
+    fp.close()
+
+    if cparser.has_option('transmogrifier', 'include'):
+        load_pipeline(cparser.get('transmogrifier', 'include'), parser)
+        
+    if cparser.has_option('transmogrifier', 'pipeline'):
+        pipeline = [
+            p.strip() for p in cparser.get('transmogrifier', 'pipeline').split()]
+    else:
+        pipeline = []
+    for section in pipeline:
+        if section == 'transmogrifier':
+            continue
+        if cparser.has_option(section, '@doc'):
+            doc = cparser.get(section, '@doc')
+        else:
+            doc = ''
+        group = OptionGroup(parser, section, doc)
+        for key, value in cparser.items(section):
+            if key.startswith('@'):
+                if key == '@doc':
+                    continue
+                metavar, _, help = value.partition(': ')
+                if metavar.upper() == metavar:
+                    action = "store"
+                else:
+                    action = "store_true"
+                    help = value
+                group.add_option("--%s:%s" % (section, key[1:]), action=action,
+                                             help=help,
+                                             metavar=metavar)
+        parser.add_option_group(group)
+    return pipelineid

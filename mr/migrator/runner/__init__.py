@@ -180,7 +180,8 @@ def load_pipeline(config, parser):
                 else:
                     action = "store_true"
                     help = value
-                group.add_option("--%s:%s" % (section, key[1:]), action=action,
+                arg = str("--%s:%s" % (section, key[1:]))
+                group.add_option(arg, action=action,
                                              help=help,
                                              metavar=metavar)
         parser.add_option_group(group)

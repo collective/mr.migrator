@@ -35,12 +35,12 @@ class NoErrorParser(OptionParser):
 
 def runner(args={}, pipeline=None):
     # Make sure GS ZCML is loaded before we load ours
-    
+
     # XXX This delays loading a bit too long. Getting:
     # ConfigurationError: ('Unknown directive',
     # u'http://namespaces.zope.org/genericsetup', u'importStep')
     # again
-    # 
+    #
     # load_config('autoinclude.zcml', mr.migrator)
 
     load_config("meta.zcml", Products.GenericSetup)
@@ -106,9 +106,10 @@ def runner(args={}, pipeline=None):
     else:
         overrides = args
 
+    cparser = configparser.ConfigParser()
     if options.showpipeline:
         for section, values in overrides.items():
-            for key,value in values.items():
+            for key, value in values.items():
                 cparser.set(section, key, value)
         cparser.write(sys.stdout)
         return
@@ -156,7 +157,7 @@ def load_pipeline(config, parser):
 
     if cparser.has_option('transmogrifier', 'include'):
         load_pipeline(cparser.get('transmogrifier', 'include'), parser)
-        
+
     if cparser.has_option('transmogrifier', 'pipeline'):
         pipeline = [
             p.strip() for p in cparser.get('transmogrifier', 'pipeline').split()]

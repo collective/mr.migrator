@@ -1,3 +1,8 @@
+1.0b12 (unreleased)
+-------------------
+
+- fixed NameError: global name 'cparser' is not defined, issue #6 [gborelli]
+
 1.0b11 (2012-04-25)
 -------------------
 - support pipeline includes [djay]

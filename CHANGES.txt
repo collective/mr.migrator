@@ -2,6 +2,8 @@
 -------------------
 
 - fixed NameError: global name 'cparser' is not defined, issue #6 [gborelli]
+- fix default profile [toutpt]
+- fix import error [toutpt]
 
 1.0b11 (2012-04-25)
 -------------------

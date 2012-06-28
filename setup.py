@@ -26,7 +26,7 @@ except SyntaxError:
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '1.0b11'
+version = '1.0'
 
 long_description = (
     read('README.rst')
@@ -71,8 +71,8 @@ setup(name='mr.migrator',
       include_package_data=True,
       zip_safe=False,
       install_requires=install_requires,
-      tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
-      test_suite='mr.migrator.recipe.tests.test_docs.test_suite',
+#      tests_require=tests_require,
+#      extras_require=dict(tests=tests_require),
+#      test_suite='mr.migrator.recipe.tests.test_docs.test_suite',
       entry_points=entry_points,
       )

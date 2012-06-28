@@ -1,3 +1,7 @@
+1.1 (2012-04-28)
+----------------
+- fix setup.py issue breaking buildout
+
 1.0b11 (2012-04-25)
 -------------------
 - support pipeline includes [djay]

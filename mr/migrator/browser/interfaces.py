@@ -1,4 +1,4 @@
-from zope.component import interface
+from zope import interface
 
 class IMrMigratorLayer(interface.Interface):
     """Layer for making "import" actions available"""

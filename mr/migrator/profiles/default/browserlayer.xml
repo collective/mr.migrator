@@ -1,0 +1,4 @@
+<layers>
+    <layer name="mr.migrator"
+           interface="mr.migrator.browser.interfaces.IMrMigratorLayer" />
+</layers>

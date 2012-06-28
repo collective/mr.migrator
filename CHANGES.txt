@@ -1,6 +1,9 @@
-1.1 (2012-04-28)
+1.0 (2012-04-28)
 ----------------
-- fix setup.py issue breaking buildout
+- fix setup.py issue breaking buildout [djay]
+- fixed NameError: global name 'cparser' is not defined, issue #6 [gborelli]
+- fix default profile [toutpt]
+- fix import error [toutpt]
 
 1.0b11 (2012-04-25)
 -------------------

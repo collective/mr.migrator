@@ -34,18 +34,7 @@ class NoErrorParser(OptionParser):
 
 
 def runner(args={}, pipeline=None):
-    # Make sure GS ZCML is loaded before we load ours
 
-    # XXX This delays loading a bit too long. Getting:
-    # ConfigurationError: ('Unknown directive',
-    # u'http://namespaces.zope.org/genericsetup', u'importStep')
-    # again
-    #
-    # load_config('autoinclude.zcml', mr.migrator)
-
-    load_config("meta.zcml", Products.GenericSetup)
-    load_config("configure.zcml", Products.GenericSetup)
-    load_config('configure.zcml', mr.migrator)
 
     parser = OptionParser()
 
@@ -57,10 +46,10 @@ def runner(args={}, pipeline=None):
                       help="Show contents of the pipeline")
     parser.add_option("--zcml", dest="zcml",
                       action="store",
-                      help="Load zcml")
+                      help="modules in the path to load zcml from")
     # Parse just the pipeline args
     ispipeline = lambda arg: [
-        a for a in ['--pipeline', '--show-pipeline'] if arg.startswith(a)]
+        a for a in ['--pipeline', '--show-pipeline','--zcml'] if arg.startswith(a)]
     pargs = [arg for arg in sys.argv[1:] if ispipeline(arg)]
     (options, cargs) = parser.parse_args(pargs)
     if options.pipeline is not None:
@@ -71,6 +60,18 @@ def runner(args={}, pipeline=None):
         # XXX How about if we look for pipeline.cfg in the cwd?
         # config = resource_filename(__name__, 'pipeline.cfg')
         config = 'pipeline.cfg'
+
+    # XXX This delays loading a bit too long. Getting:
+    # ConfigurationError: ('Unknown directive',
+    # u'http://namespaces.zope.org/genericsetup', u'importStep')
+    # again
+    #
+    load_config('autoinclude.zcml', mr.migrator)
+    if options.zcml:
+        for zcml in options.zcml.split(','):
+            if not zcml.strip():
+                continue
+            load_config('configure.zcml', __import__(zcml, fromlist=zcml.split('.')))
 
     pipelineid = load_pipeline(config, parser)
 
@@ -102,6 +103,8 @@ def runner(args={}, pipeline=None):
         for arg in args:
             section, keyvalue = arg.split(':', 1)
             key, value = keyvalue.split('=', 1)
+            if type(value) == type([]):
+                value = '\n'.join(value)
             overrides.setdefault('section', {})[key] = value
     else:
         overrides = args
@@ -119,12 +122,9 @@ def runner(args={}, pipeline=None):
     load_config("configure.zcml", Products.GenericSetup)
 
     load_config('configure.zcml', mr.migrator)
+    # Make sure GS ZCML is loaded before we load ours
 
-    if options.zcml:
-        for zcml in options.zcml.split(','):
-            if not zcml.strip():
-                continue
-            load_config('configure.zcml', __import__(zcml, fromlist=zcml.split('.')))
+
 
     context = Context()
     transmogrifier = Transmogrifier(context)

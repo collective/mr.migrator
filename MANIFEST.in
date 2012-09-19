@@ -1,2 +1,2 @@
-include *.txt *.rst
-recursive-include mr *.txt *.py *.zcml
+include *
+recursive-include mr *

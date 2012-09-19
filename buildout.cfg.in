@@ -1,7 +1,6 @@
-# Copy to buildout.cfg and uncomment one config
+# Copy to buildout.cfg and uncomment config
 [buildout]
 develop = .
 extends =
 #    conf/test-3.3.x.cfg
 #    conf/test-4.1.x.cfg
-#    conf/aclark-buildout.cfg

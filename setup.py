@@ -26,7 +26,7 @@ except SyntaxError:
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '1.0'
+version = '1.0.1'
 
 long_description = (
     read('README.rst')
@@ -64,7 +64,9 @@ setup(name='mr.migrator',
       keywords='buildout crawler spider plone transmogrifierless',
       author='Dylan Jay',
       author_email='software@pretaweb.com',
-      url='http://pypi.python.org/pypi/mr.migrator',
+      maintainer='Alex Clark',
+      maintainer_email='aclark@aclark.net',
+      url='https://github.com/collective/mr.migrator',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['mr'],

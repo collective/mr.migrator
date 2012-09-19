@@ -29,17 +29,17 @@ def read(*rnames):
 version = '1.0.1'
 
 long_description = (
-    read('README.rst')
+    open('README.rst').read()
     + '\n' +
     'Contributors\n'
     '************\n'
     + '\n' +
-    read('CONTRIBUTORS.txt')
+    open('CONTRIBUTORS.txt').read()
     + '\n' +
     'Change history\n'
     '**************\n'
     + '\n' +
-    read('CHANGES.txt')
+    open('CHANGES.txt').read()
     + '\n' +
    'Download\n'
     '********\n')

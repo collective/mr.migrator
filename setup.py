@@ -26,20 +26,24 @@ except SyntaxError:
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+<<<<<<< HEAD
 version = '1.1'
+=======
+version = '1.0.1'
+>>>>>>> e9847eb79be3644cfa1c7bd8c87798b63fc2f8b0
 
 long_description = (
-    read('README.rst')
+    open('README.rst').read()
     + '\n' +
     'Contributors\n'
     '************\n'
     + '\n' +
-    read('CONTRIBUTORS.txt')
+    open('CONTRIBUTORS.txt').read()
     + '\n' +
     'Change history\n'
     '**************\n'
     + '\n' +
-    read('CHANGES.txt')
+    open('CHANGES.txt').read()
     + '\n' +
    'Download\n'
     '********\n')
@@ -64,7 +68,9 @@ setup(name='mr.migrator',
       keywords='buildout crawler spider plone transmogrifierless',
       author='Dylan Jay',
       author_email='software@pretaweb.com',
-      url='http://pypi.python.org/pypi/mr.migrator',
+      maintainer='Alex Clark',
+      maintainer_email='aclark@aclark.net',
+      url='https://github.com/collective/mr.migrator',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['mr'],

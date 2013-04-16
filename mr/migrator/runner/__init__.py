@@ -72,7 +72,7 @@ def runner(args={}, pipeline=None):
         # config = resource_filename(__name__, 'pipeline.cfg')
         config = 'pipeline.cfg'
 
-    pipelineid = load_pipeline(config, parser)
+    pipelineid, cparser = load_pipeline(config, parser)
 
     pargs = [arg for arg in sys.argv[1:] if not arg.startswith('--template')]
     (options, cargs) = parser.parse_args(pargs)
@@ -106,7 +106,6 @@ def runner(args={}, pipeline=None):
     else:
         overrides = args
 
-    cparser = configparser.ConfigParser()
     if options.showpipeline:
         for section, values in overrides.items():
             for key, value in values.items():
@@ -186,4 +185,4 @@ def load_pipeline(config, parser):
                                              help=help,
                                              metavar=metavar)
         parser.add_option_group(group)
-    return pipelineid
+    return pipelineid, cparser

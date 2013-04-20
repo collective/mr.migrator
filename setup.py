@@ -26,11 +26,7 @@ except SyntaxError:
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-<<<<<<< HEAD
 version = '1.1'
-=======
-version = '1.0.1'
->>>>>>> e9847eb79be3644cfa1c7bd8c87798b63fc2f8b0
 
 long_description = (
     open('README.rst').read()

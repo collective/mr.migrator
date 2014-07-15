@@ -5,6 +5,8 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="mr.migrator">
 
+    <include package="Products.CMFCore" />
+
     <!-- Plone UI -->
     <configure zcml:condition="installed plone.app.z3cform">
         <configure zcml:condition="installed plone.app.transmogrifier">

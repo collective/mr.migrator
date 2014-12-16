@@ -4,6 +4,14 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+
+- Let the ``collective-migrator-configurations`` return all pipeline
+  configurations, not only these, where a
+  ``plone.app.transmogrifier.atschemaupdater`` blueprint is configured. This
+  way, we can select from any of the available pipeline configurations in the
+  ``@@mr.migrator`` view.
+  [thet]
+
 - Pep8.
   [thet]
 

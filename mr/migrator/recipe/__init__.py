@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Recipe mr.migrator"""
-
 from zc.recipe.egg.egg import Scripts
-
 import logging
 import os
 import re
@@ -48,7 +46,8 @@ class Recipe(Scripts):
         if not os.path.exists(newdir):
             os.mkdir(newdir)
 
-        self.options['location'] = self.buildout['buildout']['parts-directory'] + '/migrate'
+        self.options['location'] = self.buildout[
+            'buildout']['parts-directory'] + '/migrate'
         if 'zcml' in options:
             self.build_package_includes()
 
@@ -98,15 +97,16 @@ class Recipe(Scripts):
                     os.mkdir(includes_path)
 
         if additional_zcml:
-            path=os.path.join(includes_path, "999-additional-overrides.zcml")
+            path = os.path.join(includes_path, "999-additional-overrides.zcml")
             open(path, "w").write(additional_zcml.strip())
 
         if resources:
             resources_path = resources.strip()
-            path=os.path.join(includes_path, "998-resources-configure.zcml")
+            path = os.path.join(includes_path, "998-resources-configure.zcml")
             open(path, "w").write(
+                # TODO: what was meant to be done here?
                 resources_zcml % dict(directory=resources_path)
-                )
+            )
 
             if not os.path.exists(resources_path):
                 os.mkdir(resources_path)
@@ -139,9 +139,8 @@ class Recipe(Scripts):
                 path = os.path.join(
                     includes_path,
                     "%3.3d-%s-%s.zcml" % (n, package, file_suff),
-                    )
+                )
                 open(path, 'w').write(
                     '<include package="%s" file="%s" />\n'
                     % (package, filename)
-                    )
-
+                )

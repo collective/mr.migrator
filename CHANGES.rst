@@ -1,3 +1,19 @@
+Changelog
+=========
+
+1.1 (unreleased)
+----------------
+
+- Allow any pipeline configuration to be imported through the web at the
+  ``@@mr.migrator`` view. Previously, only those pipelines were shown, which
+  had a ``plone.app.transmogrifier.atschemaupdater`` blueprint included. Now
+  any pipelines can be used, e.g. those which handle only Dexterity objects.
+  [thet]
+
+- Pep8.
+  [thet]
+
+
 1.0.1 (2012-09-18)
 ------------------
 

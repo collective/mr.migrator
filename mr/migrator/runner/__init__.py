@@ -1,7 +1,6 @@
 from collective.transmogrifier.transmogrifier import configuration_registry
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from optparse import OptionParser, OptionGroup
-from pkg_resources import resource_filename
 
 import Products.GenericSetup
 import logging
@@ -21,7 +20,7 @@ except:
         from Products.Five.zcml import load_config
     except:
         from zope.configuration.xmlconfig import XMLConfig as load_config
-        load_config = lambda config, context: load_config(config, context)()
+        load_config = lambda config, context: load_config(config, context)()  # noqa
 
 
 class Context:
@@ -29,18 +28,18 @@ class Context:
 
 
 class NoErrorParser(OptionParser):
+
     def error(self):
         pass
 
 
 def runner(args={}, pipeline=None):
 
-
     parser = OptionParser()
 
     parser.add_option("--pipeline", dest="pipeline",
-                  help="Transmogrifier pipeline.cfg to use",
-                  metavar="FILE")
+                      help="Transmogrifier pipeline.cfg to use",
+                      metavar="FILE")
     parser.add_option("--show-pipeline", dest="showpipeline",
                       action="store_true",
                       help="Show contents of the pipeline")
@@ -49,7 +48,10 @@ def runner(args={}, pipeline=None):
                       help="modules in the path to load zcml from")
     # Parse just the pipeline args
     ispipeline = lambda arg: [
-        a for a in ['--pipeline', '--show-pipeline','--zcml'] if arg.startswith(a)]
+        a for a in [
+            '--pipeline',
+            '--show-pipeline',
+            '--zcml'] if arg.startswith(a)]
     pargs = [arg for arg in sys.argv[1:] if ispipeline(arg)]
     (options, cargs) = parser.parse_args(pargs)
     if options.pipeline is not None:
@@ -71,7 +73,11 @@ def runner(args={}, pipeline=None):
         for zcml in options.zcml.split(','):
             if not zcml.strip():
                 continue
-            load_config('configure.zcml', __import__(zcml, fromlist=zcml.split('.')))
+            load_config(
+                'configure.zcml',
+                __import__(
+                    zcml,
+                    fromlist=zcml.split('.')))
 
     pipelineid, cparser = load_pipeline(config, parser)
 
@@ -94,16 +100,16 @@ def runner(args={}, pipeline=None):
                     section[key] = v
         else:
             pass
-            #cargs[k] = v
+            # cargs[k] = v
     for k, v in cargs.items():
         args.setdefault(k, {}).update(v)
 
     overrides = {}
-    if type(args) == type(''):
+    if isinstance(args, type('')):
         for arg in args:
             section, keyvalue = arg.split(':', 1)
             key, value = keyvalue.split('=', 1)
-            if type(value) == type([]):
+            if isinstance(value, type([])):
                 value = '\n'.join(value)
             overrides.setdefault('section', {})[key] = value
     else:
@@ -122,8 +128,6 @@ def runner(args={}, pipeline=None):
 
     load_config('configure.zcml', mr.migrator)
     # Make sure GS ZCML is loaded before we load ours
-
-
 
     context = Context()
     transmogrifier = Transmogrifier(context)
@@ -159,7 +163,9 @@ def load_pipeline(config, parser):
 
     if cparser.has_option('transmogrifier', 'pipeline'):
         pipeline = [
-            p.strip() for p in cparser.get('transmogrifier', 'pipeline').split()]
+            p.strip() for p in cparser.get(
+                'transmogrifier',
+                'pipeline').split()]
     else:
         pipeline = []
     for section in pipeline:
@@ -182,7 +188,7 @@ def load_pipeline(config, parser):
                     help = value
                 arg = str("--%s:%s" % (section, key[1:]))
                 group.add_option(arg, action=action,
-                                             help=help,
-                                             metavar=metavar)
+                                 help=help,
+                                 metavar=metavar)
         parser.add_option_group(group)
     return pipelineid, cparser

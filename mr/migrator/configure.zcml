@@ -24,9 +24,17 @@
   <genericsetup:registerProfile
       zcml:condition="installed Products.GenericSetup"
       name="default"
-      title="Mr.Migrator"
+      title="mr.migrator: default"
       directory="profiles/default"
       description='Adds ability to run transmogrifier into any folder'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <genericsetup:registerProfile
+      zcml:condition="installed Products.GenericSetup"
+      name="uninstall"
+      title="mr.migrator: uninstall"
+      directory="profiles/uninstall"
+      description='Uninstalls mr.migrator'
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 

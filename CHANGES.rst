@@ -4,6 +4,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- Add uninstallation profile.
+  [thet]
+
 - Allow any pipeline configuration to be imported through the web at the
   ``@@mr.migrator`` view. Previously, only those pipelines were shown, which
   had a ``plone.app.transmogrifier.atschemaupdater`` blueprint included. Now

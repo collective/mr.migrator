@@ -23,7 +23,6 @@
           for="*"
           permission="cmf.ManagePortal"
           class=".helper.MigratorView"
-          layer=".interfaces.IMrMigratorLayer"
           />
 
       <browser:page
@@ -31,7 +30,6 @@
           for="*"
           permission="cmf.ManagePortal"
           class=".helper.MigratorRunView"
-          layer=".interfaces.IMrMigratorLayer"
           />
 
     </configure>

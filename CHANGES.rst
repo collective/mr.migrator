@@ -4,6 +4,9 @@ Changelog
 1.1 (unreleased)
 ----------------
 
+- Remove browserlayer registration, so the ``mr.migrator`` doesn't have to be
+  installed to be used. Calling ``/@@mr.migrator`` is enough.
+
 - Add uninstallation profile.
   [thet]
 

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2015-10-22)
 ----------------
 
 - Remove browserlayer registration, so the ``mr.migrator`` doesn't have to be

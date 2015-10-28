@@ -10,7 +10,8 @@ install_requires = [
     'collective.transmogrifier',
     'setuptools',
     'z3c.autoinclude',
-    'zc.recipe.egg'
+    'zc.recipe.egg',
+    'plone.app.z3cform >=0.7.7,!=1.0' # handle group.__name__ being None
 ]
 
 try:

@@ -32,7 +32,7 @@ Mr.Migrator provides the following:
 Getting a pipeline
 ------------------
 
-A pipeline is a concept from `collective.transmogrifier`_ where dictionary items pass there a series
+A pipeline is a concept from `collective.transmogrifier`_ where dictionary items pass through a series
 of steps, each adding, removing or uploading information to an external source. A pipeline
 is configured in configuration file using the INI style syntax. Mr.Migrator lets you run either
 pipelines you built yourself, or

@@ -19,15 +19,14 @@ an easy way to run the pipeline. Mr.migrator aims to bridge that gap.
 
 Mr.Migrator provides the following:
 
-- A buildout recipe with you can override a given pipeline and will also create a
-  the commandline script to run the pipeline.
-- A commandline script with help which lets you run pipelines and see their progress. This
-  is useful used in conjunction with `transmogrify.ploneremote`_ or other blueprints which
-  don't need expect to be run inside the `Plone`_ process.
-- A Plone plugin which when installed lets you pick which pipeline you want to run,
+- A buildout recipe with which you can override a given pipeline.
+- A commandline script (with help) which lets you run pipelines and see their progress. This
+  is useful when used in conjunction with `transmogrify.ploneremote`_ or other blueprints which
+  are not expected to be run inside the `Plone`_ process.
+- A Plone plugin that once installed lets you pick which pipeline you want to run,
   provides a form to override the pipeline options and then provides progress on the running
   pipeline. This is useful when you want to use `plone.app.transmogrifier`_ blueprints
-  which expect to be run inside the `Plone`_ process.
+  that should be run inside the `Plone`_ process.
 
 Getting a pipeline
 ------------------

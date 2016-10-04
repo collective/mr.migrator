@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from collective.transmogrifier.transmogrifier import configuration_registry
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from optparse import OptionParser, OptionGroup

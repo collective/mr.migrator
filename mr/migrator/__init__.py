@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 # Add these early to avoid spurious ConfigurationErrors
 

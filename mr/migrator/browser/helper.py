@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from collective.transmogrifier.transmogrifier import _load_config
 from collective.transmogrifier.transmogrifier import configuration_registry

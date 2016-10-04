@@ -107,6 +107,7 @@ class Recipe(Scripts):
             path = os.path.join(includes_path, "998-resources-configure.zcml")
             open(path, "w").write(
                 # TODO: what was meant to be done here?
+                # XXX: resources_zcml is undefined!
                 resources_zcml % dict(directory=resources_path)
             )
 

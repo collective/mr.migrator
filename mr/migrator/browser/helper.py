@@ -111,6 +111,7 @@ class MigratorRun(group.GroupForm, form.Form):
     label = _(u"Synchronize and migrate")
     fields = field.Fields(IMigratorRun)
     ignoreContext = True
+    allow_prefill_from_GET_request = True
 
     def update(self):
         configname = self.request.get('form.widgets.config')

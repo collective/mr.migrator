@@ -4,7 +4,8 @@ Changelog
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fix form problem with security hotfix 20160830
+  [agitator]
 
 
 1.1 (2015-10-22)

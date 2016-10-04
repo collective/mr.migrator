@@ -4,11 +4,13 @@ Doctest runner for 'mr.migrator'.
 """
 __docformat__ = 'restructuredtext'
 
-import unittest
-import zc.buildout.tests
-import zc.buildout.testing
+from zope.testing import doctest
+from zope.testing import renormalizing
 
-from zope.testing import doctest, renormalizing
+import unittest
+import zc.buildout.testing
+import zc.buildout.tests
+
 
 optionflags = (doctest.ELLIPSIS |
                doctest.NORMALIZE_WHITESPACE |

@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from collective.transmogrifier.transmogrifier import configuration_registry
 from collective.transmogrifier.transmogrifier import Transmogrifier
-from optparse import OptionParser, OptionGroup
+from optparse import OptionGroup
+from optparse import OptionParser
 
-import Products.GenericSetup
 import logging
 import mr.migrator
+import Products.GenericSetup
 import sys
+
 
 logging.basicConfig(level=logging.INFO)
 

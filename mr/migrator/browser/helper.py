@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from collective.transmogrifier.transmogrifier import Transmogrifier
 from collective.transmogrifier.transmogrifier import _load_config
 from collective.transmogrifier.transmogrifier import configuration_registry
+from collective.transmogrifier.transmogrifier import Transmogrifier
 from mr.migrator.browser import MigratorMessageFactory as _
 from mr.migrator.browser import logger
 from plone.app.z3cform.layout import wrap_form
@@ -20,6 +20,7 @@ from zope.schema import List
 from zope.schema import Password
 from zope.schema import TextLine
 from zope.schema.vocabulary import SimpleVocabulary
+
 import urllib
 
 

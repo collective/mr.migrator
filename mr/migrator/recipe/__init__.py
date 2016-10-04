@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 """Recipe mr.migrator"""
 from zc.recipe.egg.egg import Scripts
+
 import logging
 import os
 import re
 import shutil
+
 
 logging.basicConfig(level=logging.DEBUG)
 

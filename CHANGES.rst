@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Added more improvements about i18n support.
+  [macagua]
+
 - Added Buildout configuration file for Plone 4.3.x version.
   [macagua]
 

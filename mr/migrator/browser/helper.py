@@ -124,7 +124,7 @@ class MigratorRun(group.GroupForm, form.Form):
         super(MigratorRun, self).updateWidgets()
         self.widgets['config'].mode = interfaces.HIDDEN_MODE
 
-    @button.buttonAndHandler(u'Run')
+    @button.buttonAndHandler(_(u'Run'))
     def handleRun(self, action):
         data, errors = self.extractData()
         if errors:
@@ -180,7 +180,7 @@ class Migrator(form.Form):
 
     ignoreContext = True
 
-    @button.buttonAndHandler(u'Select')
+    @button.buttonAndHandler(_(u'Select'))
     def handleSelect(self, action):
         data, errors = self.extractData()
         if errors:

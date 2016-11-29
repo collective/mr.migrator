@@ -4,3 +4,4 @@ develop = .
 extends =
 #    conf/test-3.3.x.cfg
 #    conf/test-4.1.x.cfg
+    conf/test-4.3.x.cfg

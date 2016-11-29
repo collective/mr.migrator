@@ -4,6 +4,15 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Added Buildout configuration file for Plone 4.3.x version.
+  [macagua]
+
+- Fix IOError: [Errno 2] No such file or directory: mr/migrator/autoinclude.zcml missing file.
+  [macagua]
+
+- Updated Buildout configuration file for Plone 3.3.x version.
+  [macagua]
+
 - Fix form problem with security hotfix 20160830
   [agitator]
 

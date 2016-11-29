@@ -4,6 +4,9 @@ Changelog
 1.2 (unreleased)
 ----------------
 
+- Add Spanish translation.
+  [macagua]
+
 - Added more improvements about i18n support.
   [macagua]
 

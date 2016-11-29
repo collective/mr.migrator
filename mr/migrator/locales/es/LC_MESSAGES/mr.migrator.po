@@ -1,0 +1,60 @@
+# mr.migrator Domain for Spanish Translation
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: mr.migrator\n"
+"POT-Creation-Date: 2016-11-29 05:35+0000\n"
+"PO-Revision-Date: 2016-11-28 22:11-0400\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: Spanish Team\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: es\n"
+"Language-Name: Spanish\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: mr.migrator\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
+"Language: en\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#: ./mr/migrator/configure.zcml:34
+msgid "Adds ability to run transmogrifier into any folder"
+msgstr "Agrega la habilidad de ejecutar transmogrifier dentro de una carpeta"
+
+#: ./mr/migrator/profiles/default/actions.xml
+msgid "Import"
+msgstr "Importar"
+
+#: ./mr/migrator/browser/helper.py:171
+msgid "Registered configurations to choose from."
+msgstr "Configuraciones registradas para elegir."
+
+#: ./mr/migrator/browser/helper.py:127
+msgid "Run"
+msgstr "Correr"
+
+#: ./mr/migrator/browser/helper.py:183
+msgid "Select"
+msgstr "Seleccione"
+
+#: ./mr/migrator/browser/helper.py:170
+msgid "Select configuration"
+msgstr "Seleccionar configuración"
+
+#: ./mr/migrator/browser/helper.py:113
+msgid "Synchronize and migrate"
+msgstr "Sincronizar y migrar"
+
+#: ./mr/migrator/configure.zcml:42
+msgid "Uninstalls mr.migrator"
+msgstr "Desinstalar mr.migrator"
+
+#: ./mr/migrator/configure.zcml:34
+msgid "mr.migrator: default"
+msgstr "mr.migrator: instalación por defecto"
+
+#: ./mr/migrator/configure.zcml:42
+msgid "mr.migrator: uninstall"
+msgstr "mr.migrator: desinstalar"

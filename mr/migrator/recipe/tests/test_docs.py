@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-"""
-Doctest runner for 'mr.migrator'.
-"""
-__docformat__ = 'restructuredtext'
-
-from zope.testing import doctest
-from zope.testing import renormalizing
 
 import unittest
 import zc.buildout.testing
 import zc.buildout.tests
+
+from zope.testing import doctest
+from zope.testing import renormalizing
+
+"""
+Doctest runner for 'mr.migrator'.
+"""
+__docformat__ = 'restructuredtext'
 
 
 optionflags = (doctest.ELLIPSIS |

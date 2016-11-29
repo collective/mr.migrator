@@ -26,7 +26,7 @@ Example usage
    relatively easy to write doctests that both demonstrate the use of
    the recipe and test it.
    You can find examples of recipe doctests from the PyPI, e.g.
-   
+
      http://pypi.python.org/pypi/zc.recipe.egg
 
    The PyPI page for zc.buildout contains documentation about the test
@@ -52,7 +52,7 @@ We'll start by creating a buildout that uses the recipe::
 
 Running the buildout gives us::
 
-    >>> print 'start', system(buildout) 
+    >>> print 'start', system(buildout)
     start...
     Installing test1.
     Unused options for test1: 'option2' 'option1'.

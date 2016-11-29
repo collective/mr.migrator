@@ -71,7 +71,7 @@ def runner(args={}, pipeline=None):
     # u'http://namespaces.zope.org/genericsetup', u'importStep')
     # again
     #
-    load_config('autoinclude.zcml', mr.migrator)
+    load_config('configure.zcml', mr.migrator)
     if options.zcml:
         for zcml in options.zcml.split(','):
             if not zcml.strip():

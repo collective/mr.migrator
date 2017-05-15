@@ -4,7 +4,7 @@ This module contains mr.migrator
 """
 from setuptools import setup, find_packages
 
-version = '1.2.dev0'
+version = '1.2'
 
 install_requires = [
     'collective.transmogrifier',

@@ -9,6 +9,7 @@
   <configure zcml:condition="installed plone.app.z3cform">
     <configure zcml:condition="installed plone.app.transmogrifier">
 
+      <include package="Products.CMFCore" />
       <include package="plone.app.z3cform" />
       <include package="plone.app.transmogrifier" />
 

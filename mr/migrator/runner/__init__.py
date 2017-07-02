@@ -6,9 +6,13 @@ from optparse import OptionParser
 
 import logging
 import mr.migrator
+import pkg_resources
 import Products.GenericSetup
 import sys
 
+
+package_metadata = pkg_resources.get_distribution('mr.migrator')
+version = package_metadata.version
 
 logging.basicConfig(level=logging.INFO)
 
@@ -38,17 +42,28 @@ class NoErrorParser(OptionParser):
 
 def runner(args={}, pipeline=None):
 
-    parser = OptionParser()
+    parser = OptionParser(version="%prog " + version)
 
-    parser.add_option("--pipeline", dest="pipeline",
-                      help="Transmogrifier pipeline.cfg to use",
-                      metavar="FILE")
-    parser.add_option("--show-pipeline", dest="showpipeline",
-                      action="store_true",
-                      help="Show contents of the pipeline")
-    parser.add_option("--zcml", dest="zcml",
-                      action="store",
-                      help="modules in the path to load zcml from")
+    parser.add_option(
+        "--pipeline", dest="pipeline",
+        help="Transmogrifier pipeline to use. Supply either a "
+             "configuration filename, or a registered, named "
+             "configuration. If no value is supplied, mr.migrator "
+             "looks for 'pipeline.cfg' in the current directory.",
+        metavar="FILE or NAME")
+    parser.add_option(
+        "--show-pipeline", dest="showpipeline",
+        action="store_true",
+        help="Show contents of the pipeline")
+    parser.add_option(
+        "--zcml", dest="zcml",
+        action="store",
+        help="modules in the path to load zcml from")
+
+    # First parse everything. This makes the standard optparse
+    # functionality work, like --help and --version
+    (dummy_options, dummy_args) = parser.parse_args()
+
     # Parse just the pipeline args
     ispipeline = lambda arg: [
         a for a in [
@@ -56,6 +71,7 @@ def runner(args={}, pipeline=None):
             '--show-pipeline',
             '--zcml'] if arg.startswith(a)]
     pargs = [arg for arg in sys.argv[1:] if ispipeline(arg)]
+
     (options, cargs) = parser.parse_args(pargs)
     if options.pipeline is not None:
         config = options.pipeline
@@ -83,6 +99,9 @@ def runner(args={}, pipeline=None):
                     fromlist=zcml.split('.')))
 
     pipelineid, cparser = load_pipeline(config, parser)
+    if pipelineid is None:
+        parser.error("No pipeline configuration file or pipeline named registration found")
+        return
 
     pargs = [arg for arg in sys.argv[1:] if not arg.startswith('--template')]
     (options, cargs) = parser.parse_args(pargs)
@@ -145,12 +164,15 @@ def load_pipeline(config, parser):
         fp = open(config_info['configuration'])
         pipelineid = config
     except:
-        fp = open(config)
-        configuration_registry.registerConfiguration(
-            u'transmogrify.config.mr.migrator',
-            u"",
-            u'', config)
-        pipelineid = 'transmogrify.config.mr.migrator'
+        try:
+            fp = open(config)
+            configuration_registry.registerConfiguration(
+                u'transmogrify.config.mr.migrator',
+                u"",
+                u'', config)
+            pipelineid = 'transmogrify.config.mr.migrator'
+        except:
+            return None, None
 
     try:
         # configparser

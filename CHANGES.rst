@@ -22,6 +22,9 @@ Changelog
 - Fix form problem with security hotfix 20160830
   [agitator]
 
+- Fix the use of the option parser, making -h and -v work. Bail nicely if there can be found no config file.
+  [sunew]
+
 
 1.1 (2015-10-22)
 ----------------

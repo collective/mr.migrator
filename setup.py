@@ -11,7 +11,11 @@ install_requires = [
     'setuptools',
     'z3c.autoinclude',
     'zc.recipe.egg',
+]
+
+ploneui_requires = [
     'plone.app.z3cform >=0.7.7,!=1.0' # handle group.__name__ being None
+
 ]
 
 try:
@@ -64,7 +68,7 @@ setup(
     zip_safe=False,
     install_requires=install_requires,
     #      tests_require=tests_require,
-    #      extras_require=dict(tests=tests_require),
+          extras_require=dict(plone=ploneui_requires),
     #      test_suite='mr.migrator.recipe.tests.test_docs.test_suite',
     entry_points=entry_points,
 )

@@ -5,12 +5,10 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="mr.migrator">
 
+  <include package="Products.CMFCore" file="permissions.zcml" />
   <include package="collective.transmogrifier" file="meta.zcml" />
 
   <i18n:registerTranslations directory="locales" />
-
-  <!-- Plone UI -->
-  <include package=".browser" zcml:condition="installed Products.CMFCore"/>
 
   <!-- BBB -->
   <include

@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.3 (unreleased)
+----------------
+
+- Fix ComponentLookupError (permission problem) on script launch : #16
+  [laulaz]
+
+
 1.2 (2017-05-15)
 ----------------
 

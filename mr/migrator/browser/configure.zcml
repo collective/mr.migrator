@@ -5,35 +5,24 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="mr.migrator">
 
-  <!-- Plone UI -->
-  <configure zcml:condition="installed plone.app.z3cform">
-    <configure zcml:condition="installed plone.app.transmogrifier">
+  <utility
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      component=".helper.MigratorConfigurationsFactory"
+      name="collective-migrator-configurations"
+      />
 
-      <include package="Products.CMFCore" />
-      <include package="plone.app.z3cform" />
-      <include package="plone.app.transmogrifier" />
+  <browser:page
+      name="mr.migrator"
+      for="*"
+      permission="cmf.ManagePortal"
+      class=".helper.MigratorView"
+      />
 
-      <utility
-          provides="zope.schema.interfaces.IVocabularyFactory"
-          component=".helper.MigratorConfigurationsFactory"
-          name="collective-migrator-configurations"
-          />
-
-      <browser:page
-          name="mr.migrator"
-          for="*"
-          permission="cmf.ManagePortal"
-          class=".helper.MigratorView"
-          />
-
-      <browser:page
-          name="mr.migrator-run"
-          for="*"
-          permission="cmf.ManagePortal"
-          class=".helper.MigratorRunView"
-          />
-
-    </configure>
-  </configure>
+  <browser:page
+      name="mr.migrator-run"
+      for="*"
+      permission="cmf.ManagePortal"
+      class=".helper.MigratorRunView"
+      />
 
 </configure>

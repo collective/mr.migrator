@@ -12,15 +12,10 @@
 
   <!-- BBB -->
   <include
-      zcml:condition="installed zope.app.component"
-      package="zope.app.component"
-      file="meta.zcml"
-      />
-  <include
-      zcml:condition="not-installed zope.app.component"
       package="zope.component"
       file="meta.zcml"
       />
+  <include package=".browser" />
 
   <genericsetup:registerProfile
       zcml:condition="installed Products.GenericSetup"

@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 try:
     import configparser
 except ImportError:
-    import ConfigParser as configparser
+    import six.moves.configparser as configparser
 try:
     from Zope2.App.zcml import load_config
 except:

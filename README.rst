@@ -69,7 +69,7 @@ If you aren't using buildout you can will need to tell the runner which packages
 
  migrate --zcml=transmogrify.sqlalchemy,transmogrify.other
 
-If you the blueprint package includes the following entry_point you can skip the zcml settings above ::
+If the blueprint package includes the following entry_point you can skip the zcml settings above ::
 
   entry-points = {"z3c.autoinclude.plugin":['target = transmogrify']}
 

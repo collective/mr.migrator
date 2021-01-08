@@ -8,7 +8,7 @@
       <property name="url_expr">string: ${object_url}/@@mr.migrator</property>
       <property name="icon_expr"></property>
       <property name="permissions">
-        <element value="mr.migrator: Import to folder" />
+        <element value="Manage portal" />
       </property>
       <property name="visible">True</property>
     </object>

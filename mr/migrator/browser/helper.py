@@ -33,6 +33,8 @@ def formfactory(configname):
         return groupforms[configname]
     groups = []
     config = _load_config(configname)
+    logger.info('config')
+    import pprint; pprint.pprint(config)
     sections = config['transmogrifier']['pipeline'].splitlines()
     print("sections", sections)
     for section_id in sections:

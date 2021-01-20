@@ -8,6 +8,7 @@
   <include package="Products.CMFCore" file="permissions.zcml" />
   <include package="collective.transmogrifier" file="meta.zcml" />
 
+  <include package=".browser" />
   <i18n:registerTranslations directory="locales" />
 
   <!-- BBB -->

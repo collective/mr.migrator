@@ -4,7 +4,6 @@ Changelog
 1.3 (unreleased)
 ----------------
 
-- Python 3 compatibility [ksuess]
 - Fix ComponentLookupError (permission problem) on script launch : #16
   [laulaz]
 

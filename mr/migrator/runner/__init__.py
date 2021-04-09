@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 try:
     import configparser
 except ImportError:
-    import six.moves.configparser as configparser
+    import ConfigParser as configparser
 try:
     from Zope2.App.zcml import load_config
 except:
@@ -38,10 +38,10 @@ class NoErrorParser(OptionParser):
 
 def runner(args={}, pipeline=None):
 
-    parser = OptionParser("usage: %prog [options]")
+    parser = OptionParser()
 
     parser.add_option("--pipeline", dest="pipeline",
-                      help="Transmogrifier pipeline to use. default: pipeline.cfg",
+                      help="Transmogrifier pipeline.cfg to use",
                       metavar="FILE")
     parser.add_option("--show-pipeline", dest="showpipeline",
                       action="store_true",
@@ -50,15 +50,13 @@ def runner(args={}, pipeline=None):
                       action="store",
                       help="modules in the path to load zcml from")
     # Parse just the pipeline args
-    # ispipeline = lambda arg: [
-    #     a for a in [
-    #         '--pipeline',
-    #         '--show-pipeline',
-    #         '--zcml',
-    #         '--help'] if arg.startswith(a)]
-    # pargs = [arg for arg in sys.argv[1:] if ispipeline(arg)]
-    # (options, cargs) = parser.parse_args(pargs)
-    (options, cargs) = parser.parse_args()
+    ispipeline = lambda arg: [
+        a for a in [
+            '--pipeline',
+            '--show-pipeline',
+            '--zcml'] if arg.startswith(a)]
+    pargs = [arg for arg in sys.argv[1:] if ispipeline(arg)]
+    (options, cargs) = parser.parse_args(pargs)
     if options.pipeline is not None:
         config = options.pipeline
     elif pipeline is not None:

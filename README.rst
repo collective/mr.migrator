@@ -69,7 +69,7 @@ If you aren't using buildout you can will need to tell the runner which packages
 
  migrate --zcml=transmogrify.sqlalchemy,transmogrify.other
 
-If the blueprint package includes the following entry_point you can skip the zcml settings above ::
+If you the blueprint package includes the following entry_point you can skip the zcml settings above ::
 
   entry-points = {"z3c.autoinclude.plugin":['target = transmogrify']}
 
@@ -134,12 +134,12 @@ The configuration options can either be given as part of the buildout part e.g. 
 
 or the same option can be overridden via the command line ::
 
- $> bin/migrate crawler:url=http://www.whitehouse.gov
+ $> bin/migrate --crawler:url=http://www.whitehouse.gov
 
 some options require multiple lines within a buildout part. These can be overridden
 via the commandline by repeating the same argument e.g. ::
 
-  $> bin/migrate crawler:ignore=\.mp3 crawler:ignore=\.pdf
+  $> bin/migrate --crawler:ignore=\.mp3 --crawler:ignore=\.pdf
 
 
 You use the commandline help to view the list of available options ::

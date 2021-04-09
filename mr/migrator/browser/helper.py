@@ -21,8 +21,7 @@ from zope.schema import Password
 from zope.schema import TextLine
 from zope.schema.vocabulary import SimpleVocabulary
 
-import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
-import six
+import urllib
 
 
 groupforms = {}
@@ -33,10 +32,8 @@ def formfactory(configname):
         return groupforms[configname]
     groups = []
     config = _load_config(configname)
-    logger.info('config')
-    import pprint; pprint.pprint(config)
     sections = config['transmogrifier']['pipeline'].splitlines()
-    print("sections", sections)
+    print sections
     for section_id in sections:
         if not section_id:
             continue
@@ -53,7 +50,7 @@ def formfactory(configname):
             if key.startswith('@'):
                 key = key[1:]
                 metavar, _, help = value.partition(':')
-                default = six.text_type(cparser.get(key, ''))
+                default = unicode(cparser.get(key, ''))
                 help = value
             else:
                 if '@' + key in cparser:
@@ -61,7 +58,7 @@ def formfactory(configname):
                     continue
                 else:
                     metavar = 'LINE'
-                    default = six.text_type(value)
+                    default = unicode(value)
                     help = ''
             title = key.capitalize().replace('-', ' ').replace('_', ' ')
             # name = "%s:%s"%(section_id,key[1:])
@@ -90,11 +87,11 @@ def formfactory(configname):
             else:
                 ftype = TextLine()
             ftype.__name__ = "%s-%s" % (section_id, key.replace('-', '_'))
-            ftype.title = six.text_type(title)
-            ftype.description = six.text_type(help)
+            ftype.title = unicode(title)
+            ftype.description = unicode(help)
             ftype.required = False
             ftype.default = default
-            print(key, value, ftype, default)
+            print (key, value, ftype, default)
             fields.append(ftype)
         if fields:
             g.fields = field.Fields(*fields)
@@ -190,7 +187,7 @@ class Migrator(form.Form):
             return False
         self.request.RESPONSE.redirect(
             '%s/@@mr.migrator-run?form.widgets.%s' %
-            (self.context.absolute_url(), six.moves.urllib.parse.urlencode(data)))
+            (self.context.absolute_url(), urllib.urlencode(data)))
 
 
 MigratorConfigurationsFactory = MigratorConfigurations()

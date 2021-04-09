@@ -4,7 +4,7 @@ from collective.transmogrifier.transmogrifier import configuration_registry
 from collective.transmogrifier.transmogrifier import Transmogrifier
 from mr.migrator.browser import MigratorMessageFactory as _
 from mr.migrator.browser import logger
-from plone.app.z3cform.layout import wrap_form
+from plone.z3cform.layout import wrap_form
 from z3c.form import button
 from z3c.form import field
 from z3c.form import form

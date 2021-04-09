@@ -43,4 +43,6 @@
   <include package="z3c.autoinclude" file="meta.zcml" />
   <includePlugins package="transmogrify" zcml:condition="installed transmogrify" />
 
+  <include package=".browser" />
+
 </configure>
